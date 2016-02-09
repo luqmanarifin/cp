@@ -1,0 +1,5 @@
+git config --global http.proxy http://alrianahm:ahm1712@cache.itb.ac.id:8080
+git config --global https.proxy https://alrianahm:ahm1712@cache.itb.ac.id:8080
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy

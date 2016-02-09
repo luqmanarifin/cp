@@ -1,0 +1,559 @@
+Jakarta Gudang JAKG
+Jakarta Kota JAKK
+Jambai JBI
+Jamblang JBG
+Jambon JBO
+Jambu JMB
+Japanan JPN
+Jati JI
+Jatibarang JTB
+Jatinegara JNG
+Jatirogo JTG
+Jatiroto JTR
+Jatiwangi JWG
+Jayakarta JYK
+Jember JR
+Jemursari
+Jenar JN
+Jepon JON
+Jerakah JRK
+Jeruklegi JRL
+Jetis JS
+Jombang Kota JGK
+Juana JU
+Juanda JUA
+Jurangmangu JMU
+Kacang Kcn
+Kadipaten Kad
+Kadokangabus Kab
+Kadukacang Kdk
+Kalasan Kls
+Kalibalangan Kag
+Kalibaru Kbr
+Kalibodri Kbd
+Kalideres Kds
+Kalimas Klm
+Kalioso Ko
+Kalipucung Klc
+Kalisat Klt
+Kalisetail Kls
+Kalitidu Kit
+Kaliwedi Klw
+Kaliwungu Kln
+Kamal Kml
+Kambangan Kbg
+Kampungbandan Kpb
+Kampungbaru Kmu
+Kandangampat Kdp
+Kandangan Kda
+Kanigoro Kno
+Kapas Kps
+Kapuan Kpa
+Karangasem Kne
+Karanganyar Ka
+Karangantu Kra
+Karangenda Ked
+Karangjati Kgt
+Karanggandul Kgd
+Karangkandri Kkd
+Karangpilang Kap
+Karangpucung Knp
+Karangsari (ke Bd) Krai
+Karangsari (ke Pwt) Krr
+Karangsono Kso
+Karangsuwung Krw
+Karangtalun I Kun
+Karangtalun II Krl
+Karang Tengah Ke
+Karawang Kw
+Karet KAT
+Kartasura Ksr
+Kasiyamlor Kyr
+Kasugihan Kh
+Kawunganten Kwg
+Kayutanam Ktn
+Kebayoran Kby
+Kebasen Kbs
+Kebonromo Kro
+Keboharan Kbs
+Kebumen Km
+Kedinding Kdn
+Kediri Kd
+Kedundang Kdg
+Kedungbanteng Kdb
+Kedungdung Kdu
+Kedungjati Kej
+Kedunggalar Kg
+Kedunggedeh Kdh
+Kedungpring Kei
+Kemayoran Kmo
+Kemijen Kme
+Kemiri Kmr
+Kemranjen Kj
+Kendal Kl
+Kendalpayak Kdy
+Kencong Knc
+Kepanjen Kpn
+Kertapati Kpt
+Kertasemaya Ktm
+Kertomenanggal
+Kertosono Kts
+Kesamben Ksb
+Ketandan Ket
+Ketanggungan Kgg
+Ketanggungan Barat Kgb
+Ketapang Ktp
+Kiaracondong Kac
+Kisaran Kis
+Klakah Kk
+Klampok Klp
+Klari Kli
+Klaten Kt
+Klender Kld
+Klender Baru Kldb
+Kosambi Kos
+Kotabaru Kob
+Kotabumi Kb
+Kotapadang Kop
+Kotok Ktk
+Kradenan Knn
+Kraksaan Kr
+Kramat Kmt
+Kranji Kri
+Kras Krs
+Kraton Kn
+Krengseng Kns
+Krenceng Ken
+Kretek Krt
+Krian Krn
+Kricak Kck
+Krikilan Kkl
+Kroya Kya
+Kruwul Kru
+Kuala Namu Knm
+Kuala Begumit Kug
+Kubukrambil Kkr
+Kudaile
+Kudus' Kud
+Kunduran Kdr
+Kuraitaji Ki
+Kuripan Krp
+Kutoarjo Kta
+Kutowinangun Kwn
+Kuwu Ku
+Kwanyar Kwr
+Labang Lab
+Labruk Lbk
+Labuan Lbn
+Labuhan Lbu
+Labuanratu Lar
+Lahat Lt
+Laju Lj
+Lamongan Lmg
+Lampegan Lp
+Langen Ln
+Larangan (ke Smt) Lr
+Larangan (ke Pwt) Lra
+Lasem Ls
+Laut Tador Ltd
+Lawang Lw
+Lebak Jero Lbj
+Lebeng Lbg
+Leces Lec
+Ledokombo Ldo
+Legok Lgk
+Leles Le
+Lemahabang Lmb
+Lembak Leb
+Lempuyangan Lpn
+Lenteng Agung Lta
+Lidahtanah Ldt
+Limapuluh Lmp
+Limaumanis
+Lingga Lga
+Linggapura Lg
+Losari Los
+Lubuk Alung La
+Lubuklinggau Llg
+Lubukpakam Lbp
+Lubukrukam Lrm
+Lumajang Lm
+Luwung Lwg
+Lembang Leg
+Madiun Mn
+Madung Mdg
+Magelang Kota Mg
+Magelang Pasar Mgp
+Maja Mj
+Maguwo Mgw
+Malang (Malang Kotabaru) Ml
+Malang Jagalan Mlj
+Malang Kotalama Mlk
+Malasan Mls
+Mampang MPG
+Mandiraja Mrj
+Manggarai Mri
+Manggabesar Mgb
+Mangkang Mkg
+Mangli Mi
+Manonjaya Mnj
+Mantingan Mnt
+Maos Ma
+Marbau Mbu
+Margasari
+Margorejo
+Martapura Mp
+Masaran Msr
+Maseng Msg
+Maswati Msi
+Mayong My
+Medan Mdn
+Medan Pasar Mdp
+Meluwung Mlw
+Membang Muda Mbm
+Menes Mns
+Merak Mer
+Mesigit Mst
+Minggiran Mgn
+Mlilir Mil
+Modung Mdg
+Mojokerto Mr
+Mojosari Mjs
+Montelan Mtl
+Mrawan Mnw
+Muaraenim Me
+Muaragula Mrl
+Muara Kalaban Mkb
+Muarasaling Msl
+Muaro Mro
+Mujur Mjr
+Nagreg Ng
+Nagkaan Nkn
+Nambo
+Naras Nrs
+Natar Ntr
+Negararatu Nrr
+Negeriagung Ngn
+Ngabean Nbn
+Ngadiluwih Ndl
+Ngagel
+Ngaloran Nlr
+Ngandang
+Nganjuk Nj
+Ngawen Na
+Ngebruk Nb
+Ngimbang Nbg
+Ngrombo Nbo
+Ngujang Njg
+Ngunut Nt
+Nguntoronadi Ntn
+Niru Nru
+Notog Ntg
+Pabuaran Pab
+Padaherang Pah
+Padalarang Pdl
+Padang Pd
+Padanghalaban Pha
+Padangluar Pdr
+Padangpanjang Pp
+Padas Pds
+Pagergunung Pgg
+Pagerwojo
+Pagotan Pgo
+Paiton PHT
+Pajarakan PJK
+Pakisaji Psi
+Palang Pag
+Palbapang Plp
+Palmerah Plm
+Palur Pl
+Pamekasan Pm
+Pamingke Pme
+Pamotan Pmt
+Panarukan Pnr
+Pancur Batu Pcb
+Pandeglang Pdg
+Pangandaran Pnd
+Pangkalan Brandan Pbd
+Pangkalan Susu Pgl
+Panimur
+Panjang Pjn
+Panunggalan Pnl
+Papar Ppr
+Parakan Prn
+Pare Pe
+Pariaman Pmn
+Parigi Par
+Paritmalintang Prm
+Paron Pa
+Parung Kuda Prk
+Parung Panjang Prp
+Pasarbantul Pbl
+Pasar Minggu Psm
+Pasar Minggu Baru Psmb
+Pasarnguter Pnt
+Pasar Senen Pse
+Pasarsore
+Pasar Usang Pru
+Pasirbungur Pas
+Pasirian Psr
+Pasuruan Ps
+Pati Pt
+Patuguran Pat
+Patukan Ptn
+Pauhkambar Pak
+Payakabung Pyk
+Payakumbuh
+Payapinang Pyp
+Pegadenbaru Pgb
+Pekalongan Pk
+Pemalang Pml
+Pengkol Pko
+Penimur Pnm
+Peninjawan Pnw
+Perbaungan Pba
+Perlanaan Pra
+Pesantren (ke Kd)
+Pesantren (ke Tn)
+Pesing Psg
+Petarukan Pta
+Peterongan Ptr
+Petumbukan Ptb
+Pidada Pid
+Plabuan Plb
+Plered Pld
+Ploso Pos
+Plumpang Pmg
+Pohgajih Pgj
+Pondok Betung PDB
+Pondok Cina Poc
+Pondok Jati POK
+Pondok Ranji Pdj
+Ponorogo Po
+Porong Pr
+Poris Pi
+Prabumulih Pbm
+Prajekan Prj
+Prambon Pbn
+Prembun Prb
+Pringkasap Pri
+Probolinggo Pb
+Prupuk Ppk
+Puluaer Pla
+Pulu Brayan Pub
+Purbalingga Pbg
+Purwareja Pwj
+Purwakarta Pwk
+Purwoasri Pwa
+Purwodadi Pw
+Purwokerto Pwt
+Purwokerto Timur Pkt
+Purwonegoro Prw
+Purworejo Pwr
+Purwosari Pws
+Pucuk Pc
+Puluraja Pur
+Rajamandala Rm
+Rajapolah Rjp
+Rajawali Rjw
+Rambipuji Rbp
+Rambutan Rmt
+Rampah Rph
+Randegan Rdn
+Randuagung Rda
+Randublatung Rbg
+Rangkasbitung Rk
+Ranji Rj
+Rancaekek Rck
+Rantauprapat Rap
+Ranuyoso Rn
+Rawabebek RWB
+Rawabuntu RU
+Rawabuaya RW
+Rejosari Rjs
+Rejoso Ro
+Rejotangan Rj
+Rembang Rb
+Rendeh Rh
+Rewulu Rwl
+Sadang Sad
+Saketi Sti
+Salem Slm
+Sampang Spg
+Santang Stg
+Saradan Srd
+Sasaksaat Skt
+Sawahlunto Swl
+Sawahbesar Swb
+Sawotratap
+Saungnaga Sna
+Secang Sca
+Sedadi Sdi
+Sedayu (ke Dpt) Sea
+Sedayu (ke Yk) Sdy
+Sei Bejangkar Sbj
+Selajambe Slj
+Semarang Gudang smg
+Semarang Poncol Smc
+Semarang Tawang Smt
+Semawu
+Sembung (Bj) Seg
+Sembung (Jg) Smb
+Sempolan Spl
+Sengon Sn
+Sentolo Stl
+Sepancar Spc
+Sepanjang Spj
+Serang Sg
+Serdang Sdn
+Serpong Srp
+Siantar Sir
+Sicincin Scn
+Sidareja Sdr
+Sidoarjo Sda
+Sidotopo Sdt
+Sikampuh Skp
+Simpang Sig
+Sindanglaut Sdu
+Singkarak Ska
+Singojuruh Sgj
+Singosari Sgs
+Situbondo Sit
+Situngir Siu
+Siwalankerto
+Slahung Slh
+Slawi Slw
+Sleko Sle
+Sleman Smn
+Socah Soc
+Soka Soa
+Sokaraja SOK
+Solo Balapan SLO
+Solo Jebres SK
+Solo-Kota SKA
+Solok SLK
+Songgom SGG
+Soreang SRG
+Socah SOC
+Sragen SRG
+Sragi SRI
+Sroyo SYO
+Srono SRO
+Srowot SWT
+Sruweng SRW
+Stabat SBT
+Sudimara SDM
+Sudirman SUD
+Sukabumi SI
+Sukacinta SCT
+Sukaraja SUA
+Sukatani Sut
+Sukasari Ssr
+Sukoharjo Skh
+Sukomoro Skm
+Sukorejo Skj
+Sukowono Skw
+Sulur Sl
+Sumbergempol Sbl
+Sumberlawang Sum
+Sumberpucung Sbp
+Sumberrejo Srj
+Sumberwadung Swd
+Sumlaran Slr
+Sumobito Sbo
+Sumpiuh Sph
+Sungai Lassi Snl
+Sunggal Sun
+Surabaya Gubeng Sgu
+Surabaya Kota ("Semut") Sb
+Surabaya Pasarturi Sbi
+Suradadi Sd
+Susuhan Ss
+Surabaya Gudang Sbg
+Tabing Tab
+Tagogapu Tau
+Talun Tal
+Tamanan Tmn
+Taman Kota/Kembangan KN
+Tambak Tbk
+Tambun Tbn
+Tanahabang Thb
+Tandes Tes
+Tanjung (ke Cn) Tgn
+Tanjung (ke Spg) Tjn
+Tanjungbalai Tnb
+Tanjung Barat Tnt
+Tanjungenim Tam
+Tanjungkarang Tnk
+Tanjung Priok Tpk
+Tanjung Pura Tpu
+Tanjungrambang Tjr
+Tanjungrasa Tjs
+Tanjungslamat Tas
+Tangerang Tng
+Tanggul Tgl
+Tanggulangin Tga
+Tanggung Tgg
+Tarahan Thn
+Tarik Trk
+Tasikmalaya Tsm
+Tayu Tay
+Tebet Teb
+Tebingtinggi (ke Llg) Ti
+Tebingtinggi (ke Mdn) Tbi
+Tegal Tg
+Tegineneng Tgi
+Tegowanu Tgw
+Tekung Tku
+Telagasari Tls
+Telang Tla
+Telawa Tw
+Teluk Bayur
+Teluk Dalam Tuk
+Teluk Mengkudu Tkd
+Temanggung Tmg
+Tempeh Tpe
+Tempuran Tpn
+Temuguruh Tgr
+Tenjo Tej
+Tengor Ten
+Terisi Tis
+Tigagajah Tjh
+Tigaraksa Tgs
+Titi Papan Tpp
+Tobo Tbo
+Torjun Trj
+Tuban Tn
+Tulangan Tln
+Tulungagung Ta
+Tulungbuyut Tly
+Tuntang Ttg
+Ujanmas Ujm
+Ujung Uj
+Ujungnegoro Ujn
+Universitas Indonesia UI
+Universitas Pancasila UP
+Universitas Sriwijaya US
+Wadu Wdu
+Walantaka Wlt
+Walikukun Wk
+Wanaraja Wnr
+Waru Wr
+Waruduwur Wdw
+Warungbandrek Wb
+Wates Wt
+Way Tuba Way
+Way Pisang Wap
+Weleri Wlr
+Wilangan Wlg
+Wirosari Wrs
+Wlingi Wg
+Wojo Wj
+Wonogiri Wng
+Wonokerto Wn
+Wonokromo Wo
+Wonokromo Kota Wok
+Wonosari Wns
+Wonosobo Ws
+Yogyakarta ("Tugu") Yk
+Yosowilangun Ywl

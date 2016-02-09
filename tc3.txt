@@ -1,0 +1,4 @@
+2 2
+2012-03-16 23:59:59:Disk size is too sm
+2012-03-17 00:00:00:Network failute dete
+2012-03-17 00:00:01:Cant write varlogmysq

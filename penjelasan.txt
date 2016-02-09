@@ -1,0 +1,11 @@
+Pada dasarnya, seluruh maze dapat diselesaikan dengan cara menelusuri dinding kiri terus-menerus atau dinding kanan terus-menerus.
+
+Solusi maze ini menggunakan ide tersebut. Robot berjalan terus-menerus menelusuri dinding kanan dari maze.
+
+Pseudocode dari algoritma solusi adalah sebagai berikut.
+
+while(not robot_pada_tujuan)
+  if(depan_robot == tembok)
+    belok_kanan
+  else
+    lurus
