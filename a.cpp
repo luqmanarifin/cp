@@ -1,16 +1,12 @@
-3
-3 4
-aaab
-acca
-baaa
-3 3
-aaa
-abb
-aaa
-6 3
-dee
-ccf
-ccc
-acc
-bbb
-bbb
+12
+1 2
+1 3
+1 4
+2 5
+2 6
+3 7
+3 8
+3 9
+8 10
+8 11
+8 12

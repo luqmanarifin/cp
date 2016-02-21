@@ -1,0 +1,1 @@
+luasSegitiga a t = a * t / 2;

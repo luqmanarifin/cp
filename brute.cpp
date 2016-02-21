@@ -2,56 +2,46 @@
 
 using namespace std;
 
-char s[20][20];
-int n, m;
-int da[] = {0, 0, 1, -1};
-int db[] = {1, -1, 0, 0};
+const int N = 50;
 
-bool valid(int i, int j) {
-  return 0 <= i && i < n && 0 <= j && j < m;
-}
+int s[N][N];
+int a[N * N], b[N * N];
 
 int main() {
-  scanf("%d %d", &n, &m);
-  for(int i = 0; i < n; i++) {
-    scanf("%s", s[i]);
-  }
-  int ans = 0;
-  int til = max(n, m);
-  for(int i = 0; i < n; i++) {
-    for(int j = 0; j < m; j++) {
-      for(int k = 0; k < n; k++) {
-        for(int l = 0; l < m; l++) {
-          set<pair<int, int>> s;
-          for(int a = 0; a < til; a++) {
-            bool good = 1;
-            for(int t = 0; t < 4; t++) {
-              s.insert(make_pair(i+a*da[t], j+a*db[t]));
-              if(!valid(i+a*da[t], j+a*db[t]) || s[i+a*da[t]][j+a*db[t]] == 'B') {
-                good = 0;
-                break;
-              }
-            }
-            if(!good) break;
-            for(int b = 0; b < til; b++) {
-              bool nice = 1;
-              for(int t = 0; t < 4; t++) {
-                if(!valid(k+b*da[t], l+b*db[t]) || s[k+b*da[t]][l+b*db[t]] == 'B' || s.count(make_pair(k+b*da[t], l+b*db[t]))) {
-                  nice = 0;
-                  break;
-                }
-              }
-              if(nice) {
-                ans += (4 * a + 1)*(4 * b + 1);
-              } else {
-                break;
-              }
+  for(int n = 3; n <= 7; n++) {
+    int pt = 0;
+    for(int i = 1; i <= n; i++) {
+      for(int j = i + 1; j <= n; j++) {
+        a[pt] = i;
+        b[pt] = j;
+        pt++;
+      }
+    }
+    for(int mask = 0; mask < (1 << pt); mask++) {
+      memset(s, 0, sizeof(s));
+      bool ada = 0;
+      for(int i = 0; i < pt; i++) {
+        if(mask & (1 << i)) {
+          s[a[i]][b[i]] = 1;
+        }
+      }
+      for(int i = 1; i <= n; i++) {
+        for(int j = i + 1; j <= n; j++) {
+          for(int k = j + 1; k <= n; k++) {
+            if(s[i][j] == s[j][k] && s[j][k] == s[i][k]) {
+              ada = 1;
+              goto WOW;
             }
           }
         }
       }
+      WOW:;
+      if(!ada) {
+        printf("%d ada yang ngeblok\n", n);
+        break;
+      }
     }
   }
-  cout << ans << endl;
+  
   return 0;
 }
