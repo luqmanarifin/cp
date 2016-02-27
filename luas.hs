@@ -1,1 +1,3 @@
-luasSegitiga a t = a * t / 2;
+module luas where
+
+kali a b = a * b
