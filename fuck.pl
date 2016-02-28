@@ -1,1 +1,0 @@
-urut(X, Y) :- sort(X, Y).

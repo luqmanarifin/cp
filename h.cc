@@ -1,8 +1,0 @@
-#include <unordered_set>
-#include <bits/stdc++.h>
-
-int main() {
-    long long tmp;
-    std::unordered_set<long long> hashset;
-    while (std::cin >> tmp) hashset.insert(tmp);
-}
