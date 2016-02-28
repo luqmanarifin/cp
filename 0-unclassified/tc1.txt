@@ -1,0 +1,7 @@
+60 3
+2012-03-16 16:15:25: Disk size is
+2012-03-16 16:15:25: Network failute
+2012-03-16 16:16:29: Cant write varlog
+2012-03-16 16:16:42: Unable to start process
+2012-03-16 16:16:43: Disk size is too small
+2012-03-16 16:16:53: Timeout detected

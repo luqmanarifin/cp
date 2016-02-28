@@ -1,0 +1,19 @@
+tidak ada main modal
+kita bisa mengendalikan input output di sini
+file mahasiswa dalam bentuk modul
+file modul itu contohnya dalam bentuk ini
+
+-- pada file anak anak
+module nama_file where
+
+luasTrapesium :: Float -> Float -> Float -> Float
+luasTrapesium 
+
+-- pada main grader
+import qualified nama_file(nama_fungsi)
+print(LuasTrapesium.luasTrapesium())
+
+Olympia : file file nya di zip in, out, makefile, Main.hs
+setting time & memory limit di aplikasi
+
+eksak score = total 100

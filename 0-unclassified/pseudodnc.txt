@@ -1,0 +1,69 @@
+var SolveByDivideAndConquer
+  result : float
+  count : integer
+  points : array of point
+
+program SolveByDivideAndConquer
+  result <- inf
+  count <- 0
+  sort points by x ascending
+  Solve(points)
+
+  
+  
+var Solve(p : array of point)
+  result : float    // as global variable
+  size : integer
+  mid : integer
+  delta : float
+  limit : integer
+  temp : Point
+  left, right, pLeft, pRight : array of Point
+  set : set of point (sorted by z-coordinate)
+  l, r : integer
+  
+program Solve(p : array of point)
+  size <- p.size
+  if(size < 2)
+    return
+  mid <- (size - 1) div 2
+  delta <- p[mid].x
+  
+  i traversal 0 .. size - 1
+    if(i <= mid)
+      pLeft.add(points[i])
+    else
+      pRight.add(points[i])
+      
+    if(delta x (p[i], delta) < result)
+      if(i <= mid)
+        left.add(points[i])
+      else 
+        right.add(points[i]);
+        
+  Solve(pLeft)
+  Solve(pRight)
+  
+  sort left by Y ascending
+  sort right by Y ascending
+  l <- 0; r <- 0
+  
+  i traversal left.size()
+    while(r < right.size() AND right[r].y < left[i].y + result)
+      set.add(right[r])
+      inc(r)
+      
+    while(l < r AND right[l].y <= left[i].y - result)
+      set.remove(right[l])
+      inc(l)
+      
+    limit <- left[i].z - result
+    temp <- set.upper_bound(Point(infinity, infinity, limit))
+    
+    while(temp != null AND temp.z < left[i].z + result)
+      cur = distance(temp, left[i])
+      if(cur < result)
+        result = cur
+        p1 = temp
+        p2 = left[i]
+      temp <- set.upper_bound(temp)
