@@ -14,9 +14,11 @@ int t[][4] = {
   {1, 2, 3, 0},
   {0, 2, 3, 0},
   {0, 3, 0, 0},
-  {1, 2, 0, 0}
+  {1, 2, 0, 0},
+  {0, 2, 0, 0},
+  {1, 3, 0, 0},
 };
-int sz[] = {4, 3, 3, 3, 3, 2, 2};
+int sz[] = {4, 3, 3, 3, 3, 2, 2, 2, 2};
 
 int dp[N][N][10];
 int num[N][N], n, m;
@@ -32,7 +34,7 @@ bool valid(int i, int j) {
 }
 
 int main() {
-  int k, q;
+  int q;
   scanf("%s %d %d %d", junk, &n, &m, &q);
   for(int i = 1; i <= n; i++) {
     for(int j = 1; j <= m; j++) {
@@ -41,21 +43,23 @@ int main() {
   }
   for(int i = 1; i <= n; i++) {
     for(int j = 1; j <= m; j++) {
-      for(int k = 0; k < 7; k++) {
+      for(int k = 0; k < 9; k++) {
+        dp[i][j][k] = 1;
         for(int d = 0; d < sz[k]; d++) {
           int ta = i + da[t[k][d]];
           int tb = j + db[t[k][d]];
-          if(!valid(ta, tb)) goto TO;
-          if(num[i][j] < num[ta][tb]) goto TO;
+          if(!valid(ta, tb)) break;
+          if(num[i][j] < num[ta][tb]) {
+            dp[i][j][k] = 0;
+            break;
+          }
         }
-        dp[i][j][k]++;
-        TO:;
       }
     }
   }
   for(int i = 1; i <= n; i++) {
     for(int j = 1; j <= m; j++) {
-      for(int k = 0; k < 7; k++) {
+      for(int k = 0; k < 9; k++) {
         dp[i][j][k] += dp[i][j - 1][k] + dp[i - 1][j][k] - dp[i - 1][j - 1][k];
       }
     }
@@ -63,38 +67,77 @@ int main() {
   while(q--) {
     int a, b, c, d;
     scanf("%d %d %d %d", &a, &b, &c, &d);
-    int ka = b - a + 1;
-    int kb = d - c + 1;
+    int ka = c - a + 1;
+    int kb = d - b + 1;
     if(ka == 1 && kb == 1) {
       puts("Kiri Atas");
       continue;
     }
+    //puts("LALA SINI");
     if(find(a + 1, b + 1, c - 1, d - 1, 0) && ka >= 3 && kb >= 3) {
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(a + 1, b, c - 1, b, 1) && ka >= 3) {
+    if(find(a + 1, b, c - 1, b, 1) && ka >= 3 && kb >= 2) {
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(a, b + 1, a, d - 1, 2) && kb >= 3) {
+    if(find(a, b + 1, a, d - 1, 2) && kb >= 3 && ka >= 2) {
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(a + 1, d, c - 1, d, 3) && ka >= 3) {
+    //puts("LALA SANA");
+    if(find(a + 1, d, c - 1, d, 3) && ka >= 3 && kb >= 2) {
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(c, b + 1, c, d - 1, 4) && kb >= 3) {
+    //puts("LALA SANA 7");
+    if(find(c, b + 1, c, d - 1, 4) && kb >= 3 && ka >= 2) {
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(c, b, c, b, 5) && ka >= 2) {
+    //puts("LALA SANA 8");
+    if(find(c, b, c, b, 5) && ka >= 2 && kb >= 2) {
+      //printf("hasil %d\n", find(c, b, c, b, 5));
       puts("Tidak Mungkin");
       continue;
     }
-    if(find(a, d, a, d, 6) && kb >= 2) {
+    //puts("LALA SANA 9");
+    if(find(a, d, a, d, 6) && kb >= 2 && ka >= 2) {
       puts("Tidak Mungkin");
+      continue;
+    }
+    //puts("SAMPE SINI");
+    if(ka == 1) {
+      if(find(a, b + 1, a, d - 1, 7)) {
+        puts("Tidak Mungkin");
+        continue;
+      }
+      bool kiri = num[a][b] >= num[a][b + 1];
+      bool kanan = num[c][d] >= num[c][d - 1];
+      if(kiri && !kanan) {
+        puts("Kiri Atas");
+      } else if(kanan && !kiri) {
+        puts("Kanan Bawah");
+      } else {
+        puts("Tidak Mungkin");
+      }
+      continue;
+    }
+    if(kb == 1) {
+      if(find(a + 1, b, c - 1, b, 8)) {
+        puts("Tidak Mungkin");
+        continue;
+      }
+      bool kiri = num[a][b] >= num[a + 1][b];
+      bool kanan = num[c][d] >= num[c - 1][d];
+      if(kiri && !kanan) {
+        puts("Kiri Atas");
+      } else if(kanan && !kiri) {
+        puts("Kanan Bawah");
+      } else {
+        puts("Tidak Mungkin");
+      }
       continue;
     }
     bool kiri = 1, kanan = 1;
@@ -122,5 +165,6 @@ int main() {
       puts("Tidak Mungkin");
     }
   }
+  
   return 0;
 }

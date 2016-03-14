@@ -32,7 +32,7 @@ bool valid(int i, int j) {
 }
 
 int main() {
-  int k, q;
+  int q;
   scanf("%s %d %d %d", junk, &n, &m, &q);
   for(int i = 1; i <= n; i++) {
     for(int j = 1; j <= m; j++) {
