@@ -6,17 +6,12 @@ const int N = 14;
 
 bool bad[N][N], done[N];
 int a[N][N], ans, n, m, k;
+int udah;
 
 void dfs(int i, int j) {
   if(j > m) return dfs(i + 1, 1);
   if(i > n) {
-    bool all = 1;
-    for(int i = 1; i <= k; i++) {
-      if(!done[i]) {
-        all = 0;
-      }
-    }
-    ans += all;
+    ans += udah == k;
     return;
   }
   dfs(i, j + 1);
@@ -24,7 +19,9 @@ void dfs(int i, int j) {
     if(!done[t] && !bad[t][a[i - 1][j]] && !bad[t][a[i][j - 1]]) {
       done[t] = 1;
       a[i][j] = t;
+      udah++;
       dfs(i, j + 1);
+      udah--;
       a[i][j] = 0;
       done[t] = 0;
     }
