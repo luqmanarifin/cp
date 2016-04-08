@@ -22,7 +22,10 @@ public class TEMPLATE {
 
 class Task { 
   public void solve(int testNumber, InputReader in, PrintWriter out) {
-    
+    for(int i = 0; i < n; i++) {
+      
+    }
+    while 
   }
 }
 
