@@ -3,5 +3,5 @@
 using namespace std;
 
 int main() {
-	cout << 48 << endl;
+  cout << 48 << endl;
 }
