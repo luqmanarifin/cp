@@ -1,0 +1,8 @@
+program ideone;
+
+var
+	i, n, sum : int64;
+
+begin
+	
+end.
