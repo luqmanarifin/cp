@@ -26,6 +26,16 @@ int main() {
   }
   string a, b;
   while(cin >> a >> b) {
+    int la = a.length();
+    int lb = b.length();
+    if(a.length() > b.length()) {
+      puts("0");
+      continue;
+    }
+    if(la == lb && a >= b) {
+      puts("0");
+      continue;
+    }
     if(a.length() == b.length()) {
       int len = a.length();
       int low = upper_bound(bank[len].begin(), bank[len].end(), a) - bank[len].begin();
@@ -36,8 +46,6 @@ int main() {
       for(int i = a.length() + 1; i < b.length(); i++) {
         sum += bank[i].size();
       }
-      int la = a.length();
-      int lb = b.length();
       int low = upper_bound(bank[la].begin(), bank[la].end(), a) - bank[la].begin();
       int upp = lower_bound(bank[lb].begin(), bank[lb].end(), b) - bank[lb].begin();
       sum += (bank[la].size() - low) + upp;
