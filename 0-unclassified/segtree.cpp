@@ -28,7 +28,9 @@ int lcm(int a, int b) { return a/ gcd(a, b)*b; }
 LL a[N];
 
 struct Segtree {
-public:
+  Segtree() {
+    
+  }
     Segtree(int _n) : n(_n) {
         add.resize(big);
         num.resize(big);
@@ -50,7 +52,6 @@ public:
             cur = min(cur, _find(1, 0, n-1, ll, rr));
         return cur;
     }
-private:
     void _build(int pos, int l, int r) {
         if(l == r) {
             add[pos] = 0;
@@ -101,6 +102,7 @@ int main(void)
     sf("%d", &n);
     FORS(i, n) sf("%I64d", a + i);
     Segtree seg(n);
+    Segtree a;
     
     int q;
     sf("%d", &q);
