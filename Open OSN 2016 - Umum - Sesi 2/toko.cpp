@@ -10,7 +10,7 @@ const int N = 6e5 + 5;
 struct segtree_up {
 public:
   segtree_up() {
-    a.resize(MAX << 2);
+    a.resize(MAX << 2);x
     build(1, 0, MAX);
   }
   void update(int at, int x, int y, int id) {
