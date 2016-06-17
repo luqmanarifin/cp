@@ -20,12 +20,12 @@ public class TEMPLATE {
   }
 }
 
-class Task { 
+class Task {
   public void solve(int testNumber, InputReader in, PrintWriter out) {
     for(int i = 0; i < n; i++) {
       
     }
-    while 
+    while
   }
 }
 
@@ -56,7 +56,7 @@ class InputReader {
   public long nextLong() {
     return Long.parseLong(next());
   }
-	
+
   public double nextDouble() {
     return Double.parseDouble(next());
   }
