@@ -1,3 +1,6 @@
 *.class
 *.exe
 e
+*.png
+*.in
+*.out
