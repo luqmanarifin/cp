@@ -34,8 +34,10 @@ struct segtree {
 
   void build(int p, int l, int r) {
     push[p] = -1;
-    cnt[p] = r - l + 1;
-    if(l == r) return;
+    if(l == r) {
+      cnt[p] = !tmp[l];
+      return;
+    }
     int mid = (l + r) >> 1;
     build(p + p, l, mid);
     build(p + p + 1, mid + 1, r);
@@ -86,21 +88,28 @@ int main() {
   scanf("%d %d %d", &n, &q, &k);
   int mn = 2e9 + 5;
   int mk = -mn;
+  vector<int> all;
   for(int i = 0; i < n; i++) {
     scanf("%d", a + i);
     mn = min(mn, a[i]);
     mk = max(mk, a[i]);
+    all.push_back(a[i]);
   }
   for(int i = 0; i < q; i++) {
     scanf("%d %d", ql + i, qr + i);
   }
-  int l = mn, r = mk;
+  sort(all.begin(), all.end());
+  all.resize(distance(all.begin(), unique(all.begin(), all.end())));
+
+  int l = 0, r = all.size() - 1;
   while(l < r) {
-    int mid = (l + r) >> 1;
-    segtree seg(n);
+    int mm = (l + r + 1) >> 1;
+    int mid = all[mm];
+    vector<int> tmp;
     for(int i = 0; i < n; i++) {
-      seg.update(i, i, a[i] >= mid);
+      tmp.push_back(a[i] >= mid);
     }
+    segtree seg(n, tmp);
     for(int i = 0; i < q; i++) {
       int count = seg.find(ql[i], qr[i]);
       seg.update(ql[i], ql[i] + count - 1, 0);
@@ -108,11 +117,11 @@ int main() {
     }
     int val = !seg.find(k, k);
     if(val) {
-      l = mid;
+      l = mm;
     } else {
-      r = mid - 1;
+      r = mm - 1;
     }
   }
-  cout << l << endl;
+  cout << all[l] << endl;
   return 0;
 }
