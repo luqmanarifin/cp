@@ -8,7 +8,7 @@ int a[N], ql[N], qr[N];
 vector<int> push, cnt;
 
 struct segtree {
-  segtree(int n) : n(n) {
+  segtree(int n, vector<int> tmp) : n(n), tmp(tmp) {
     if(push.empty()) {
       push.resize(n << 2);
       cnt.resize(n << 2);
@@ -78,6 +78,7 @@ struct segtree {
     return find(p + p, l, mid, ll, rr) + find(p + p + 1, mid + 1, r, ll, rr);
   }
   int n;
+  vector<int> tmp;
 };
 
 int main() {
