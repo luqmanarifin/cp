@@ -8,7 +8,6 @@ vector< int > adj[N];
 int n, k;
  
 void dfs(int v, int p = -1) {
-  long long cur[N];
   dp[v][1] = 1;
   for(int u : adj[v]) if(u != p) {
     dfs(u, v);
