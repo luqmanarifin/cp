@@ -80,8 +80,6 @@ void ConvexHull(vector<Point> P) {
   int k = P.size() - 1;
   while(k && collinear(P[0], P[k-1], P[k])) k--;
   reverse(P.begin() + k, P.end());
-  //FORS(i, P.size()) pf("%lld %lld\n", P[i].x, P[i].y);
-  //puts("-");
   vector<Point> S;
   S.push_back(P[n-1]);
   S.push_back(P[0]);
@@ -108,52 +106,31 @@ bool between(Point a, Point p, Point b) {
   && min(a.y, b.y) <= p.y && p.y <= max(a.y, b.y);
 }
 
-
-bool onSegment(Point p, Point q, Point r)
-{
-  return (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) && q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y));
-}
- 
-int orientation(Point p, Point q, Point r)
-{
-  int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-  if (val == 0) return 0; 
-  return (val > 0)? 1: 2; 
-}
- 
-bool doIntersect(Point p1, Point q1, Point p2, Point q2)
-{
-  int o1 = orientation(p1, q1, p2);
-  int o2 = orientation(p1, q1, q2);
-  int o3 = orientation(p2, q2, p1);
-  int o4 = orientation(p2, q2, q1);
-  if (o1 != o2 && o3 != o4) return true;
-  if (o1 == 0 && onSegment(p1, p2, q1)) return true;
-  if (o2 == 0 && onSegment(p1, q2, q1)) return true;
-  if (o3 == 0 && onSegment(p2, p1, q2)) return true;
-  if (o4 == 0 && onSegment(p2, q1, q2)) return true;
-  return false;
-}
- 
 // Returns true if the point p lies inside the polygon[] with n vertices
 bool isInside(vector<Point> polygon, int n, Point p)
 {
   assert(n > 3);
   Point pola = Point(INF, p.y);
   Point polb = Point(-INF, p.y);
-  int cnta = 0, cntb = 0;
+  vector<double> P;
   for(int i = 1; i < n; i++) {
     if(between(polygon[i - 1], p, polygon[i])) {
       return 1;
     }
-    if(doIntersect(polygon[i - 1], polygon[i], p, pola)) {
-      cnta++;
-    }
-    if(doIntersect(polygon[i - 1], polygon[i], p, polb)) {
-      cntb++;
+    long long ly = min(polygon[i].y, polygon[i - 1].y);
+    long long ry = max(polygon[i].y, polygon[i - 1].y);
+    if (ly <= p.y && p.y <= ry && ly != ry) {
+      int dy = (polygon[i - 1].y < polygon[i].y? 1 : -1);
+      int dx = (polygon[i - 1].x < polygon[i].x? 1 : -1);
+      long long a = abs(p.y - polygon[i - 1].y);
+      long long dify = abs(polygon[i].y - polygon[i - 1].y);
+      long long difx = abs(polygon[i].x - polygon[i - 1].x);
+      P.push_back(polygon[i - 1].x + (double) dx * a * difx / dify);
     }
   }
-  return cnta % 2 && cntb % 2;
+  sort(P.begin(), P.end());
+  int pt = lower_bound(P.begin(), P.end(), (double) p.x) - P.begin();
+  return pt % 2;
 }
 
 int main() {
@@ -197,6 +174,6 @@ int main() {
       }
     }
   }
-  
+
   return 0;
 }
