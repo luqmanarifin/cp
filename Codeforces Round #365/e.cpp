@@ -5,14 +5,15 @@ using namespace std;
 const int N = 1005;
 const int V = 1e6 + 5;
 const int inf = 1e9;
+const long long INF = 1e18;
 
 vector<int> p, need;
-int a[N];
+long long a[N];
 
 vector<int> prime;
 bool is[V];
 
-vector<pair<int, int>> dp[N];
+vector<pair<int, long long>> dp[N];
 vector<int> to[N], pake[N];
 
 int main() {
@@ -24,13 +25,28 @@ int main() {
       }
     }
   }
+  long long pol = 1e12;
+  long long cc = 1, cnt = 0;
+  for (auto it : prime) {
+    if (cc * it < pol) {
+      cc *= it;
+      cnt++;
+    }
+  }
+  cout << cnt << endl;
   
   int n;
   long long k;
   scanf("%d %I64d", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%d", a + i);
+  for (int i = 1; i <= n; i++) scanf("%I64d", a + i);
   if (k == 1) {
-    printf("1\n1\n");
+    long long mn = INF;
+    int ans = -1;
+    for (int i = 1; i <= n; i++) if (a[i] < mn) {
+      mn = a[i];
+      ans = i;
+    }
+    printf("1 %d\n", ans);
     return 0;
   }
   for (auto it : prime) {
@@ -51,26 +67,33 @@ int main() {
   int state = 1;
   for (auto it : need) state *= (it + 1);
   for (int i = 0; i < N; i++) {
-    dp[i].assign(state, {inf, inf});
+    dp[i].assign(state, {inf, INF});
     to[i].assign(state, -1);
     pake[i].assign(state, 0);
   }
   dp[0][0] = {0, 0};
   int ada[p.size()];
   int v[p.size()];
+  //for (auto it : need) printf("%d ", it); printf("\n");
   for (int i = 1; i <= n; i++) {
+    memset(v, 0, sizeof(v));
+    long long val = a[i];
+    for (int k = 0; k < p.size(); k++) {
+      while (val % p[k] == 0) {
+        //printf("%I64d %d\n", val, v[k]);
+        v[k]++;
+        val /= p[k];
+      }
+      //printf("%d ", v[k]);
+    }
+    //printf("\n");
     for (int j = 0; j < state; j++) {
       if (dp[i - 1][j].first == inf) continue;
       memset(ada, 0, sizeof(ada));
-      memset(v, 0, sizeof(v));
-      int mask = j, val = a[i];
+      int mask = j;
       for (int k = 0; k < p.size(); k++) {
         ada[k] = mask % (need[k] + 1);
         mask /= need[k] + 1;
-        while (val % p[k] == 0) {
-          v[k]++;
-          val /= p[k];
-        }
       }
       assert(mask == 0);
       for (int k = 0; k < p.size(); k++) {
@@ -81,7 +104,8 @@ int main() {
         tj += ada[k] * mul;
         mul *= need[k] + 1;
       }
-      pair<int,int> cur = {dp[i-1][j].first + 1, dp[i-1][j].second + i};
+      assert(tj < state);
+      pair<int, long long> cur = {dp[i-1][j].first + 1, dp[i-1][j].second + a[i]};
       if (cur < dp[i][tj]) {
         dp[i][tj] = cur;
         to[i][tj] = j;
