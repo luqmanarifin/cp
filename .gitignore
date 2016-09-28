@@ -4,5 +4,7 @@
 *.png
 *.in
 *.out
+*/e
 */*.pdf
 */*/*.pdf
+e
