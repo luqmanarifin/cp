@@ -9,8 +9,8 @@ char buffer[MAX];
 
 int main() {
   ios_base::sync_with_stdio(false);
-  char aname[] = "d.out";
-  char bname[] = "mbuh.out";
+  char aname[] = "salah.out";
+  char bname[] = "correct.out";
   FILE *aFile;
   aFile = fopen(aname, "r");
   while(fgets(buffer, MAX, aFile)) {
@@ -34,6 +34,6 @@ int main() {
   } else {
     printf("%s tidak sama dengan %s, jumlah line berbeda\n", aname, bname);
   }
-  
+
   return 0;
 }
