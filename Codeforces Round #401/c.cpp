@@ -25,11 +25,9 @@ int main() {
       for (int it = i; it <= k; it++) {
         til[it] = max(til[it], k);
       }
-      //printf("%d: %d %d\n", j, i, k);
       i = k;
     }
   }
-  //for (int i = 0; i < n; i++) printf("%d ", til[i]); printf("\n");
   
   int q;
   scanf("%d", &q);
