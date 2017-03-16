@@ -3,7 +3,7 @@
 using namespace std;
 
 const int N = 2e5 + 5;
-const int MAGIC = 450;
+const int MAGIC = 600;
 
 int a[N], com[N], num[MAGIC];
 int bit[MAGIC][N];
@@ -67,10 +67,12 @@ int main() {
     } else {
       ans--;
     }
-    update(com[l], a[l], -1);
-    update(com[r], a[l], +1);
-    update(com[r], a[r], -1);
-    update(com[l], a[r], +1);
+    if (com[l] != com[r]) {
+      update(com[l], a[l], -1);
+      update(com[r], a[l], +1);
+      update(com[r], a[r], -1);
+      update(com[l], a[r], +1);
+    }
     swap(a[l], a[r]);
     printf("%I64d\n", ans);
   }
