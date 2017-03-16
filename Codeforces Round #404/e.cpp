@@ -3,10 +3,10 @@
 using namespace std;
 
 const int N = 2e5 + 5;
-const int MAGIC = 600;
+const int MAGIC = 2000;
 
 int a[N], com[N], num[MAGIC];
-int bit[MAGIC][N];
+int bit[N / MAGIC + 5][N];
 
 void update(int at, int i, int val) {
   for (; i < N; i |= i + 1) bit[at][i] += val;
