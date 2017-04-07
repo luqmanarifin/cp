@@ -41,7 +41,7 @@ int main() {
       if (it != mp[j].end()) {
         last[j][i] = min(last[j][i], it->second);
       }
-      printf("%d ")
+      mp[j][sum[j]] = i;
     }
   }
   for (int i = 0; i < n; i++) {
