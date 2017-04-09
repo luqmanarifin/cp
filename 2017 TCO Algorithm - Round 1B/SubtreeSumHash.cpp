@@ -8,7 +8,8 @@ const long long mod = 1e9 + 7;
 class SubtreeSumHash {
 public:
   vector<int> w;
-  vector<int> edge[N], all;
+  vector<int> edge[N];
+  long long all, x;
   
   long long power(long long a, long long b) {
     if (a >= mod) a %= mod;
@@ -19,35 +20,32 @@ public:
     return tmp;
   }
   
-  vector<long long> dfs(int now, int bef = -1) {
-    vector<long long> tmp;
+  long long dfs(int now, int bef = -1) {
+    long long tmp = 0;
+    long long val = power(x, w[now]);
     for (auto it : edge[now]) {
       if (it == bef) continue;
-      vector<long long> ret = dfs(it, now);
-      vector<long long> mul;
-      for (auto i : tmp) for (auto j : ret) mul.push_back(i + j);
+      long long ret = dfs(it, now);
+      long long mul = tmp * ret % mod;
       
-      for (auto i : mul) tmp.push_back(i);
-      for (auto i : ret) tmp.push_back(i + w[now]);
+      tmp += mul;
+      tmp += (ret * val) % mod;
+      tmp %= mod;
     }
-    tmp.push_back(w[now]);
-    for (auto it : tmp) all.push_back(it);
+    tmp = (tmp + val) % mod;
+    all = (all + tmp) % mod;
     return tmp;
   }
   
-  int count(vector<int> _w, vector<int> p, int x) {
+  int count(vector<int> _w, vector<int> p, int _x) {
     w = _w;
+    x = _x;
     for (int i = 0; i < p.size(); i++) {
       edge[i + 1].push_back(p[i]);
       edge[p[i]].push_back(i + 1);
     }
     dfs(0);
-    long long ans = 0;
-    for (auto it : all) {
-      ans += power(x, it);
-      if (ans >= mod) ans -= mod;
-    }
-    return (int) ans;
+    return (int) all;
   }
 };
 
