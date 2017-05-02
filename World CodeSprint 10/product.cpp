@@ -3,7 +3,7 @@
 using namespace std;
 
 const int N = 3e5 + 5;
-const long long inf = 1e18;
+const long long inf = 2e9;
 
 // ikut atau nggak - minimum maximum
 long long dp[N][2][2], rev[N][2][2];
@@ -37,6 +37,7 @@ void dfs(int now, int bef) {
     mini(dp[now][1][0], dp[now][1][0] + dp[it][1][0]);
     maxi(dp[now][1][1], dp[now][1][1] + dp[it][1][1]);
   }
+  //printf("now %d; mini %I64d %I64d; maxi %I64d %I64d\n", now, dp[now][0][0], dp[now][1][0], dp[now][0][1], dp[now][1][1]);
 }
 
 void reverse(int now, int bef) {
@@ -88,9 +89,13 @@ void reverse(int now, int bef) {
     maxi(rig1[1][i], rig1[1][i] + dp[kid[i]][1][1]);
   }
   //puts("swipe right done");
+  //printf("kid size %d\n", kid.size());
   for (int i = 0; i < kid.size(); i++) {
-    long long pos = rev[now][0][1], neg = rev[now][0][0];
+    long long pos = max(rev[now][1][1], rev[now][0][1]), neg = min(rev[now][1][0], rev[now][0][0]);
     long long sumpos = rev[now][1][1], sumneg = rev[now][1][0];
+    //printf("nomer %d\n", i);
+    //printf("1 pos %I64d\n", pos);
+    //printf("1 sumpos %I64d\n", sumpos);
     if (i) {
       mini(neg, lef0[0][i-1]);
       maxi(pos, lef0[1][i-1]);
@@ -98,13 +103,17 @@ void reverse(int now, int bef) {
       mini(sumneg, sumneg + lef1[0][i-1]);
       maxi(sumpos, sumpos + lef1[1][i-1]);
     }
+    //printf("2 pos %I64d\n", pos);
+    //printf("2 sumpos %I64d\n", sumpos);
     if (i+1 < kid.size()) {
       mini(neg, rig0[0][i+1]);
       maxi(pos, rig0[1][i+1]);
       
-      mini(sumneg, sumneg + lef1[0][i+1]);
-      maxi(sumpos, sumpos + lef1[1][i+1]);
+      mini(sumneg, sumneg + rig1[0][i+1]);
+      maxi(sumpos, sumpos + rig1[1][i+1]);
     }
+    //printf("3 pos %I64d\n", pos);
+    //printf("3 sumpos %I64d\n", sumpos);
     rev[kid[i]][0][0] = min(neg, sumneg);
     rev[kid[i]][0][1] = max(pos, sumpos);
     rev[kid[i]][1][0] = min((long long) a[kid[i]], a[kid[i]] + sumneg);
@@ -131,8 +140,8 @@ int main() {
   }
   dfs(1, 0);
   //puts("dfs done");
-  rev[1][0][0] = a[1];
-  rev[1][0][1] = a[1];
+  rev[1][0][0] = inf;
+  rev[1][0][1] = -inf;
   rev[1][1][0] = rev[1][1][1] = a[1];
   reverse(1, 0);
   cout << ans << endl;
