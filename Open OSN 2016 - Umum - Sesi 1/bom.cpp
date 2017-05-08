@@ -23,6 +23,7 @@ int main() {
         break;
       }
     }
+    if (bip == n) return 0;
     if(!done) {
       for(int i = 1; i < n; i++) {
         printf("%d\n", r);
@@ -34,6 +35,7 @@ int main() {
           break;
         }
       }
+      if (bip == n) break;
     }
     if(done) {
       l = mid + 1;
