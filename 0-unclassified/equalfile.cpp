@@ -9,8 +9,8 @@ char buffer[MAX];
 
 int main() {
   ios_base::sync_with_stdio(false);
-  char aname[] = "salah.out";
-  char bname[] = "correct.out";
+  char aname[] = "rem.out";
+  char bname[] = "true.out";
   FILE *aFile;
   aFile = fopen(aname, "r");
   while(fgets(buffer, MAX, aFile)) {
