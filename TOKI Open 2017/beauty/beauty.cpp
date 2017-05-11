@@ -101,7 +101,6 @@ void dfs_pre(int now, int bef = -1) {
 }
 
 void dfs(int now, int bef = -1) {
-  printf("dfs %d %d\n", now, bef);
   int best = -1, p = -1;
   dad[now] = bef;
   id[now] = el[num_comp].size();
@@ -177,9 +176,7 @@ std::vector<int> getMaximumBeauty(int n, int m, int q, std::vector<int> t,
   }
   for (int i = 0; i < m; i++) {
     if (par[u[i]] != par[v[i]]) {
-      printf("ada edge %d %d\n", par[u[i]], par[v[i]]);
       edge[par[u[i]]].emplace_back(par[v[i]], v[i], u[i]);
-      edge[par[v[i]]].emplace_back(par[u[i]], u[i], v[i]);
     }
   }
   dfs_pre(0);
@@ -199,7 +196,7 @@ std::vector<int> getMaximumBeauty(int n, int m, int q, std::vector<int> t,
     }
     seg[c] = segtree(v);
     printf("comp %d: ", c);
-    for (auto it : el[c]) printf("%d ", it); printf("\n");
+    for (auto it :)
   }
   for (int i = 0; i < pre.size(); i++) rmq[i][0] = pre[i];
   for (int j = 1; (1 << j) <= pre.size(); j++) {
