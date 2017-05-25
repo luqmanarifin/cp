@@ -42,7 +42,10 @@ long long add;    // nambah berapa
 long long nodes;  // berapa node sekarang
 char s[BIG];
 
-void boom(char *s) {
+// length - string - sub - active
+vector<tuple<int, string, long long, long long>> tmp;
+
+long long boom(char *s) {
   int n = strlen(s);
   node* cur = root;
   int last = 0;
@@ -66,14 +69,39 @@ void boom(char *s) {
       active = active * invd[1] % mod;
     }
   }
-  nodes -= sub;
-  nodes %= mod;
-  if (nodes < 0) nodes += mod;
-  add -= active;
-  add++;
-  add %= mod;
-  if (add < 0) add += mod;
-  cur->k = now;
+  tmp.emplace_back(n, (string) s, sub, active);
+  return (nodes - sub + mod) % mod;
+}
+
+void flush() {
+  sort(tmp.begin(), tmp.end());
+  for (auto it : tmp) {
+    string buf;
+    long long sub, active;
+    tie(ignore, buf, sub, active) = it;
+    
+    node* cur = root;
+    bool ok = 1;
+    for (int i = 0; i < buf.length(); i++) {
+      if (buf[i] == 'L') {
+        cur = cur->lef;
+      } else {
+        cur = cur->rig;
+      }
+      if (cur->k == now) ok = 0;
+    }
+    if (ok) {
+      nodes -= sub;
+      nodes %= mod;
+      if (nodes < 0) nodes += mod;
+      add -= active;
+      add++;
+      add %= mod;
+      if (add < 0) add += mod;
+      cur->k = now;
+    }
+  }
+  tmp.clear();
 }
 
 main() {
@@ -96,17 +124,19 @@ main() {
       int cmd;
       scanf("%lld", &cmd);
       if (cmd == 1) {
+        flush();
+        
         int v;
         scanf("%lld", &v);
         nodes += add * (dua[v] - 1);
         nodes %= mod;
         now += v;
         add = add * dua[v] % mod;
+        printf("%lld\n", nodes);
       } else {
         scanf("%s", s);
-        boom(s);
+        printf("%lld\n", boom(s));
       }
-      printf("%lld\n", nodes);
     }
     
     delete root;
