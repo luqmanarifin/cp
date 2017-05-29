@@ -8,7 +8,7 @@ import java.math.BigInteger;
  * Actual solution is at the top
  */
 
-public class TEMPLATE {
+class Main {
   public static void main(String[] args) {
     InputStream inputStream = System.in;
     OutputStream outputStream = System.out;
