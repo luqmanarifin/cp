@@ -1,10 +1,13 @@
 *.class
 *.exe
+*/a
+*/b
+*/c
+*/d
 */e
 *.png
 *.in
 *.out
-*/e
 */*.pdf
 */*/*.pdf
 e
