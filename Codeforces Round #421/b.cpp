@@ -62,7 +62,7 @@ int main() {
     at[i] += nowsum;
     nowcnt += cdo[i];
   }
-  long long ans = 1e8;
+  long long ans = 1e18;
   int p = -1;
   for (int i = 0; i < n; i++) {
     //printf("%lld ", at[i]);
