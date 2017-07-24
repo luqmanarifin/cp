@@ -34,6 +34,15 @@ bool isWin() {
         }
       }
       if (nice) return 1;
+
+      nice = (px - 4 >= 0 && py + 5 <= n);
+      for (int i = 0; i < 5; i++) {
+        if (s[px - i][py + i] != 'X') {
+          nice = 0;
+        }
+      }
+      if (nice) return 1;
+
     }
   }
   return 0;
