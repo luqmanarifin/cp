@@ -2,13 +2,18 @@
 
 using namespace std;
 
-int main() {
-  priority_queue<pair<string, int>> pq;
-  pq.emplace("aning", 0);
-  pq.emplace("su", 0);
-  cout << pq.top().first << endl;
-  
-  cout << ("d()" < "dadada()") << endl;
+bool is[4000];
 
+int main() {
+  int ans = 0;
+  for (int i = 2; i < 4000; i++) {
+    if (!is[i]) {
+      ans++;
+      for (int j = i * i; j < 4000; j += i) {
+        is[j] = 1;
+      }
+    }
+  }
+  cout << ans << endl;
   return 0;
 }
