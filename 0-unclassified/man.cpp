@@ -10,6 +10,5 @@ int main() {
     cout << it;
     if(it == ';') cout << endl;
   }
-  
   return 0;
 }
