@@ -1,5 +1,5 @@
 # cp (Competitive Programming)
-A repository to backup my competitive programming source code since 2013. What is Competitive Programming? You can read here. [https://en.wikipedia.org/wiki/Competitive_programming](https://en.wikipedia.org/wiki/Competitive_programming"Competitive Programming")
+A repository to backup my competitive programming source code since 2013. What is Competitive Programming? You can read here. https://en.wikipedia.org/wiki/Competitive_programming
 
 This repo contains source code of solutions for problems from online judges: Codeforces, TopCoder, CodeChef, HackerRank, TLX, SPOJ. Also it contains my solutions for problemset from some competitions, both online and onsite.
 
