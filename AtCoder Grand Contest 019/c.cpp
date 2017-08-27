@@ -6,10 +6,11 @@ const int N = 2e5 + 5;
 
 const double PI = acos(-1.0);
 const double SAVE = 20 - PI * 5;
+const double BUANG = 20 - PI * 10;
 
 struct segtree {
   segtree(int n) : n(n) {
-    num.assign(n << 2, -1e18);
+    num.assign(n << 2, -N);
   }
   void update(int at, int val) {
     update(1, 0, n - 1, at, val);
@@ -33,7 +34,7 @@ struct segtree {
   int find(int p, int l, int r, int ll, int rr) {
     if (ll <= l && r <= rr) return num[p];
     int mid = (l + r) >> 1;
-    int ret = 0;
+    int ret = -N;
     if (ll <= mid) {
       ret = max(ret, find(p + p, l, mid, ll, rr));
     }
@@ -43,11 +44,12 @@ struct segtree {
     return ret;
   }
   int n;
-  vector<double> num;
+  vector<int> num;
 };
 
 map<int, int> idx, idy;
 set<int> alx, aly;
+vector<int> allx, ally;
 
 pair<int, int> a[N], from, to;
 int n;
@@ -55,6 +57,7 @@ int n;
 #define y second
 
 void reverse_x() {
+  reverse(allx.begin(), allx.end());
   for (int i = 0; i < n; i++) {
     a[i].x = alx.size() - a[i].x - 1;
   }
@@ -63,6 +66,7 @@ void reverse_x() {
 }
 
 void reverse_y() {
+  reverse(ally.begin(), ally.end());
   for (int i = 0; i < n; i++) {
     a[i].y = aly.size() - a[i].y - 1;
   }
@@ -91,10 +95,12 @@ int main() {
   
   int id = 0;
   for (auto it : alx) {
+    allx.push_back(it);
     idx[it] = id++;
   }
   id = 0;
   for (auto it : aly) {
+    ally.push_back(it);
     idy[it] = id++;
   }
   
@@ -110,13 +116,30 @@ int main() {
   sort(a, a + n + 2);
   
   int best = 0;
+  segtree seg(aly.size());
   for (int i = 0; i < n + 2; i++) {
     if (a[i] == from) {
-      
+      seg.update(a[i].y, 0);
+      //puts("FROM");
     }
     if (a[i] == to) {
-      
+      best = seg.find(0, a[i].y);
+      //puts("TO");
+    }
+    //printf("actual: %d %d\n", a[i].x, a[i].y);
+    //printf("%d %d\n", allx[a[i].x], ally[a[i].y]);
+    if (a[i] != from && a[i] != to) {
+      int cur = seg.find(0, a[i].y);
+      seg.update(a[i].y, cur + 1);
     }
   }
+  double ans = 0;
+  int S = abs(allx[to.x] - allx[from.x]) + abs(ally[to.y] - ally[from.y]);
+  if (best == min(abs(allx[to.x] - allx[from.x]), abs(ally[to.y] - ally[from.y])) + 1) {
+    ans = 100LL * S - (best - 1) * SAVE - BUANG;
+  } else {
+    ans = 100LL * S - best * SAVE;
+  }
+  printf("%.15f\n", ans);
   return 0;
 }
