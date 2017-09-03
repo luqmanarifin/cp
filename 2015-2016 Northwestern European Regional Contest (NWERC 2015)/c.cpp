@@ -3,10 +3,14 @@
 using namespace std;
 
 const int N = 1005;
+const double eps = 1e-7;
 
 struct Point {
   Point() {}
   Point(int x, int y) : x(x), y(y) {}
+  bool operator==(Point p) {
+    return x == p.x && y == p.y;
+  }
   int x, y;
 };
 
@@ -15,9 +19,13 @@ bool intersect(Point p1, Point p2, Point p3, Point p4) {
   // equations-to-code conversion
   long long x1 = p1.x, x2 = p2.x, x3 = p3.x, x4 = p4.x;
   long long y1 = p1.y, y2 = p2.y, y3 = p3.y, y4 = p4.y;
-   
+  if (p1 == p3 || p1 == p4 || p2 == p3 || p2 == p4) return 1;
+  
+  //printf("(%d, %d) to (%d, %d) with (%d, %d) to (%d, %d)\n", x1, y1, x2, y2, x3, y3, x4, y4);
+  
   long long d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
   // If d is zero, there is no intersection
+  //cout << d << endl;
   if (d == 0) return 0;
    
   // Get the x and y
@@ -26,8 +34,8 @@ bool intersect(Point p1, Point p2, Point p3, Point p4) {
   double y = double( pre * (y3 - y4) - (y1 - y2) * post ) / d;
    
   // Check if the x and y coordinates are within both lines
-  if ( x < min(x1, x2) || x > max(x1, x2) || x < min(x3, x4) || x > max(x3, x4) ) return 0;
-  if ( y < min(y1, y2) || y > max(y1, y2) || y < min(y3, y4) || y > max(y3, y4) ) return 0;
+  if ( x < min(x1, x2) - eps || x > max(x1, x2) + eps || x < min(x3, x4) - eps || x > max(x3, x4) + eps ) return 0;
+  if ( y < min(y1, y2) - eps || y > max(y1, y2) + eps || y < min(y3, y4) - eps || y > max(y3, y4) + eps ) return 0;
    
   // Return the point of intersection
   return 1;
@@ -64,7 +72,9 @@ int main() {
   for (int i = 1; i <= m; i++) {
     for (int j = i + 1; j <= m; j++) {
       if (from[i] == from[j]) continue;
+      //printf("check %d %d\n", i, j);
       if (intersect(well[from[i]], to[i], well[from[j]], to[j])) {
+        //printf("%d %d\n", i, j);
         edge[i].push_back(j);
         edge[j].push_back(i);
       }

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 1024;
+const int N = 2024;
 const long long INF = 1000000000000000001LL;
 
 int r, m, s, d, n;
@@ -11,6 +11,7 @@ vector<int> g[N];
 int x[N], y[N];
 
 long long mul(long long le, long long ri) {
+  if (le == 0) return 0;
   if (INF/le < ri)
     return INF;
   return le * ri;
@@ -36,7 +37,7 @@ int main() {
     x[i]--;
     y[i]--;
   }
-  long long ans;
+  long long ans = 0;
   for (int i = 0; i < s; i++) {
     for (int j = s; j < s+m; j++) {
       for (int k = s+m; k < tot; k++) {
