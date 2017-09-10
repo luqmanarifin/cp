@@ -7,7 +7,10 @@ typedef pair<pii,int> piii;
 #define se second
 #define mp make_pair
 #define pb push_back
-const int INF = 1e9;
+
+#define int long long
+
+const int INF = 2e9;
 const double EPS = 1e-9;
 const int N = 2000, M = 5000;
 int poi[N + 5];
@@ -19,8 +22,7 @@ int n, m;
 int A[M + 5], B[M + 5], C[M + 5];
 
 bool checkBellmanFord(){
-    for(int i = 0;i <= n; ++i) dist[i] = INF;
-    dist[0] = 0;
+    memset(dist, 0, sizeof(dist));
     for(int loop = 1; loop < n; ++loop){
         for(int i = 0;i < m; ++i){
             if(dist[A[i]] + C[i] < dist[B[i]]){
@@ -37,26 +39,26 @@ bool checkBellmanFord(){
     return true;
 }
 
-int main(){
+main(){
     int t;
-    scanf("%d", &t);
+    scanf("%I64d", &t);
     while(t--){
-        scanf("%d%d", &n, &m);
+        scanf("%I64d%I64d", &n, &m);
         int minEdge = INF;
         memset(poi, 0, sizeof poi);
         for(int i = 0;i < m; ++i){
             int x, y, c;
-            scanf("%d%d%d", &x, &y, &c);
+            scanf("%I64d%I64d%I64d", &x, &y, &c);
             ve[x][poi[x]] = mp(y, c);
             poi[x]++;
             minEdge = min(minEdge, c);
-      A[i] = x;
-      B[i] = y;
-      C[i] = c;
+            A[i] = x;
+            B[i] = y;
+            C[i] = c;
             edge[i] = mp(mp(x, y), c);
         }
         if(minEdge >= 0){
-            printf("%d\n", minEdge);
+            printf("%I64d\n", minEdge);
             continue;
         }
         bool valid = checkBellmanFord();
@@ -65,30 +67,8 @@ int main(){
             continue;
         }
         int mindist = INF;
-        for(int i = 1; i <= n;++i){
-            for(int j = 0;j <= n; ++j) dist[j] = INF;
-            dist[i] = 0;
-            pq.clear();
-            pq.insert(mp(0, i));
-            while(!pq.empty()){
-                auto it = pq.begin();
-                pii top = *it; pq.erase(it);
-                if (top.fi != dist[top.se]) continue;
-                if (top.fi > 0) continue;
-                for(int j = 0;j < poi[top.se]; ++j){
-                    int t = ve[top.se][j].fi;
-                    int c = ve[top.se][j].se;
-                    if(top.fi + c < dist[t]){
-                        if (dist[t] != INF)
-                            pq.erase(mp(dist[t], t));
-                        dist[t] = top.fi + c;
-                        mindist = min(mindist, dist[t]);
-                        pq.insert(mp(dist[t], t));
-                    }
-                }
-            }
-        }
-        printf("%d\n", mindist);
+        for (int i = 1; i <= n; i++) mindist = min(mindist, dist[i]);
+        printf("%I64d\n", mindist);
     }
     return 0;
 }
