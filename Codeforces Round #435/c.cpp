@@ -66,7 +66,7 @@ int main() {
     }
 
   } else if ((n - 1) % 4 == 2) {
-    ans.push_back(x);
+    ans.push_back(x | OFFSET);
 
     int kali = (n - 1) / 4, it = 0;
     for (int i = 0; it < kali; i++) {
@@ -79,7 +79,6 @@ int main() {
       ans.push_back(num1 | OFFSET);
       ans.push_back(num2 | OFFSET);
     }
-    ans.back() |= OFFSET;
     ans.push_back(OFFSET2);
     ans.push_back(OFFSET | OFFSET2);
   } else if ((n - 1) % 4 == 3) {
