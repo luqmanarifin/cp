@@ -7,13 +7,20 @@ const int T = 3000;
 
 int t[N], d[N], p[N];
 
-int dp[N][T], got[N][T];
+int dp[N][T], got[N][T], ori[N];
 
 int main() {
   int n;
   scanf("%d", &n);
+  vector<tuple<int, int, int, int, int>> tem;
   for (int i = 1; i <= n; i++) {
     scanf("%d %d %d", t + i, d + i, p + i);
+    tem.emplace_back(d[i], t[i], d[i], p[i], i);
+  }
+  
+  sort(tem.begin(), tem.end());
+  for (int i = 0; i < tem.size(); i++) {
+    tie(ignore, t[i + 1], d[i + 1], p[i + 1], ori[i + 1]) = tem[i];
   }
   
   for (int i = 1; i <= n; i++) {
@@ -44,6 +51,6 @@ int main() {
   reverse(ans.begin(), ans.end());
   printf("%d\n", best);
   printf("%d\n", ans.size());
-  for (auto it : ans) printf("%d ", it); printf("\n");
+  for (auto it : ans) printf("%d ", ori[it]); printf("\n");
   return 0;
 }
