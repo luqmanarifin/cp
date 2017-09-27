@@ -23,8 +23,7 @@ void dfs(int now, int goal) {
   if (done[now]) return;
   done[now] = 1;
   if (now == goal) return;
-  for (auto it : edge[now]) if (can[it]) {
-    //printf("%d pilih %d\n", now, it);   
+  for (auto it : edge[now]) if (can[it]) { 
     dir[now] = it;
     dfs(it, goal);
     return;
@@ -53,23 +52,10 @@ int main() {
     que[to].emplace_back(from, k, i);
   }
   for (int i = 1; i <= n; i++) sort(edge[i].begin(), edge[i].end());
-    /*
-  for (int i = 1; i <= n; i++) {
-    for (auto it : edge[i]) {
-      printf("%d %d\n", i, it);
-    }
-  }
-  */
-  //puts("good one");
+
   for (int i = 1; i <= n; i++) {
     memset(can, 0, sizeof(can));
     sebar(i, i);
-    /*
-    for (int j = 1; j <= n; j++) {
-      printf("%d %d %d\n", j, i, can[j]);
-    }
-    */
-    //puts("sebar done");
     memset(dir, 0, sizeof(dir));
     memset(done, 0, sizeof(done));
     for (auto it : que[i]) {
@@ -77,9 +63,6 @@ int main() {
       tie(from, ignore, ignore) = it;
       dfs(from, i);
     }
-    //printf("tema %d\n", i);
-    //for (int j = 1; j <= n; j++) printf("dir %d %d\n", j, dir[j]);
-    //puts("dfs done");
     memset(to_goal, 0, sizeof(to_goal));
     for (int j = 1; j <= n; j++) {
       edir[j].clear();
@@ -99,7 +82,6 @@ int main() {
         par[j][k] = par[par[j][k - 1]][k - 1];
       }
     }
-    //puts("dfs goal ok");
     for (auto it : que[i]) {
       int from, k, id;
       tie(from, k, id) = it;
@@ -115,7 +97,6 @@ int main() {
         }
       }
     }
-    //puts("done");
   }
   for (int i = 0; i < q; i++) printf("%d\n", ans[i]);
   return 0;
