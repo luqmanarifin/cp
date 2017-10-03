@@ -76,48 +76,47 @@ Choose dreams of our own
 
 using namespace std;
 
-const int N = 55;
-const int T = 5105;
-
-int f[N], s[N];
-double p[N];
-int n, r;
-double dp[N][T];
-
-double solve(double x) {
-  for (int j = 0; j < T; j++) {
-    if (j <= r) {
-      dp[n][j] = 0;
-    } else {
-      dp[n][j] = x;
-    }
-  }
-  for (int i = n - 1; i >= 0; i--) {
-    for (int j = 0; j < T; j++) dp[i][j] = x;
-    for (int j = 0; j <= r; j++) {
-      dp[i][j] = p[i] * (f[i] + min(x, dp[i+1][j + f[i]]))
-               + (1 - p[i]) * (s[i] + min(x, dp[i+1][j + s[i]]));
-    }
-  }
-  return dp[0][0];
-}
+const int N = 3e5 + 5;
 
 int main() {
-  scanf("%d %d", &n, &r);
-  for (int i = 0; i < n; i++) {
-    scanf("%d %d %lf", f + i, s + i, p + i);
-    p[i] /= 100;
-  }
-  double l = 0, r = 1e18;
-  for (int iter = 0; iter < 150; iter++) {
-    //printf("%.10f %.10f\n", l, r);
-    double mid = (l + r) / 2;
-    if (solve(mid) < mid) {
-      r = mid;
-    } else {
-      l = mid;
+  int n;
+  scanf("%d", &n);
+  vector<int> a(n);
+  for (int i = 0; i < n; i++) scanf("%d", &a[i]);
+  multiset<int> plus, minus, unused;
+  long long ans = 0;
+  for (auto x : a) {
+    //printf("before %d\n", x);
+    //printf("plus: "); for (auto it : plus) printf("%d ", it); printf("\n");
+    //printf("minus: "); for (auto it : minus) printf("%d ", it); printf("\n");
+    //printf("unused: "); for (auto it : unused) printf("%d ", it); printf("\n");
+    //printf("\n");
+    
+    if (!unused.empty()) {
+      int z = *(unused.begin());
+      if (z < x) {
+        if (!plus.empty() && *(plus.begin()) < z) {
+        } else {
+          plus.insert(x);
+          minus.insert(z);
+          unused.erase(unused.find(z));
+          ans += x - z;
+          continue;
+        }
+      }
     }
+    if (!plus.empty()) {
+      int z = *(plus.begin());
+      if (z < x) {
+        plus.insert(x);
+        plus.erase(plus.find(z));
+        unused.insert(z);
+        ans += x - z;
+        continue;
+      }
+    }
+    unused.insert(x);
   }
-  printf("%.15f\n", r);
+  cout << ans << endl;
   return 0;
 }
