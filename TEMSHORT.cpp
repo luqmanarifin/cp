@@ -1,38 +1,62 @@
 /*
 
-We walked with our shoulders in line,
-Laughing about things that didn't matter as we looked onward toward the same dream.
-If I listen carefully, I can still hear it,
-Your voice, staining this city orange.
+Our shadows stretch out on the pavement
+As I walk in the twilight with you
+If we could be together like this forever
+Holding hands
+It's almost enough to make me cry
 
-When you're not around, I'm so bored,
-But when I say I'm lonely, you just laugh at me.
-I just keep counting up the things I have left,
-That shine brightly and never fade away.
+The wind grows colder
+I can smell winter
+Soon the season will come to this town
+When I can get close to you
 
-Like the sky after the rain lets up, like clearing up one's heart.
-I remember your smile, it floats up in my mind and I can't help but smile.
-Surely, just as we were that day, like innocent children,
-We'll run through the passing seasons, seeing each of our many tomorrows.
+This moment
+When the two of us cuddle up
+To gaze at the first snow flower of the year
+Is overflowing with happiness
 
-Whenever I was alone and started to feel uneasy,
-On nights I didn't want to sleep, we'd just go on talking.
+It's not dependence or weakness
+I just love you
+I thought so with all my heart
 
-I wonder what you'll go on to see from here,
-And what I'll see right here.
-I'll try to entrust my tears,
-To this city where the setting sun stains everything orange.
+I feel like when I'm with you
+I can overcome anything
+I pray that these days
+Will continue forever
 
-This single love was born among a million rays of light.
-Even if you never change, even if you happen to change, you're you, so I'm not worried.
-Someday we'll both become adults and meet wonderful people.
-At that time, I hope we can bring along our irreplaceable families and meet here again.
+The wind rattled the window
+The night shakes you awake
+I will change any sorrow
+Into a smile
 
-Like the sky after the rain lets up, like clearing up one's heart.
-I remember your smile, it floats up in my mind and I can't help but smile.
-This single love was born among a million rays of light.
-We run through the passing seasons, seeing each of our many tomorrows,
-Choosing from each of our many dreams.
+The snow flowers fell
+Outside the window
+Unceasing
+And colored our town
+I realized that love means
+Wanting to do something
+For someone else
+
+If I should lose you
+I'll become a star and shine on you
+I'll be with you even on nights
+When your smile is wet with tears
+
+This moment
+When the two of us cuddle up
+To gaze at the first snow flower of the year
+Is overflowing with happiness
+
+It's not dependence or weakness
+I just want to be like this
+With you forever
+I can honestly think that now
+
+The pure white snow flowers
+Bury this town
+Softly drawing memories in our hearts
+Together forever with you...
 
 */
 
