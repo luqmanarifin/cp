@@ -86,7 +86,6 @@ long long find(int p, int q) {
   return ret;
 }
 
-int x[N][N], y[N][N];
 long long at[N][N];
 
 long long get_rand() {
@@ -107,8 +106,6 @@ int main() {
     scanf("%d %d %d %d %d", &t, &a, &b, &c, &d);
     if (t == 1) {
       long long v = get_rand();
-      x[a][b] = c;
-      y[a][b] = d;
       at[a][b] = v;
       add(a, b, v);
       add(a, d + 1, -v);
