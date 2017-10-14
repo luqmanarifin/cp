@@ -32,38 +32,31 @@ void djiktra(int source, long long* dist, vector<pair<int, int> >* edge) {
 }
 
 int main() {
-  int t;
-  scanf("%d", &t);
-  for(int tt = 1; tt <= t; tt++) {
-    printf("Case #%d:\n", tt);
-    for(int i = 0; i < N; i++) {
-      upward[i].clear();
-      backward[i].clear();
-    }
-    
-    int n, m, q;
-    scanf("%d %d %d", &n, &m, &q);
-    while(m--) {
-      int a, b, c;
-      scanf("%d %d %d", &a, &b, &c);
-      upward[a].push_back(make_pair(b, c));
-      backward[b].push_back(make_pair(a, c));
-    }
-    djiktra(0, up, upward);
-    djiktra(n - 1, down, backward);
-    assert(up[n - 1] == down[0]);
-    while(q--) {
-      int x, y, z;
-      scanf("%d %d %d", &x, &y, &z);
-      long long cur = up[x] + down[y] + z;
-      if(cur < up[n - 1]) {
-        puts("YES");
-      } else {
-        puts("NO");
-      }
-    }
-    
+  for(int i = 0; i < N; i++) {
+    upward[i].clear();
+    backward[i].clear();
   }
   
+  int n, m, q;
+  scanf("%d %d %d", &n, &m, &q);
+  while(m--) {
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
+    upward[a].push_back(make_pair(b, c));
+    backward[b].push_back(make_pair(a, c));
+  }
+  djiktra(0, up, upward);
+  djiktra(n - 1, down, backward);
+  assert(up[n - 1] == down[0]);
+  while(q--) {
+    int x, y, z;
+    scanf("%d %d %d", &x, &y, &z);
+    long long cur = up[x] + down[y] + z;
+    if(cur < up[n - 1]) {
+      puts("YES");
+    } else {
+      puts("NO");
+    }
+  }
   return 0;
 }
