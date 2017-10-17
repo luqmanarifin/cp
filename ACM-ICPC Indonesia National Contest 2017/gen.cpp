@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
   vector<tuple<int, int, int, int>> v;
-  int n = 5;
+  int n = 6;
   for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
       for (int k = i; k <= n; k++) {

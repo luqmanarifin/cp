@@ -7,14 +7,14 @@ const int N = 1005;
 int a[N][N];
 int dx[] = {0, -1, 0, 1};
 int dy[] = {-1, 0, 1, 0};
-int n = 5;
+int n = 6;
 
 bool valid(int i, int j) {
   return 1 <= i && i <= n && 1 <= j && j <= n;
 }
 
 int main() {
-  int p = 3, q = 3, now = -1, st = 0;
+  int p = n/2+1, q = n/2+1, now = -1, st = 0;
   a[p][q] = ++st;
   for (int i = 1; i < n * n; i++) {
     int ti = (p + dx[(now + 1) % 4]);
