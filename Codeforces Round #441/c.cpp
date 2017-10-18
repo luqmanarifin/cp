@@ -5,6 +5,47 @@ using namespace std;
 const int N = 1e5 + 5;
 
 vector<int> a[N];
+vector<int> adj[N], rev[N];
+vector<int> ans;
+int col[N];
+
+/****** Tarjan’s SCC *******/
+vector< int > num, low, S, vis;
+int cntr, numCC;
+
+void tarjanSCC(int v) {
+  low[v] = num[v] = ++cntr;
+  vis[v] = 1;
+  S.push_back(v);
+  for(auto u : adj[v]) {
+    if(num[u] == -1)
+      tarjanSCC(u);
+    if(vis[u])
+      low[v] = min(low[v], low[u]);
+  }
+  if(low[v] == num[v]) {
+    //printf("SCC %d :", ++numCC);
+    int cnt = 0;
+    while(1) {
+      int u = S.back(); S.pop_back(); vis[u] = 0;
+      cnt++;
+      //printf(" %d", u);
+      if(u == v)
+        break;
+    }
+    if (cnt > 1) {
+      puts("No");
+      exit(0);
+    }
+  }
+}
+
+void dfs(int now) {
+  if (col[now]) return;
+  col[now] = 1;
+  ans.push_back(now);
+  for (auto it : rev[now]) dfs(it);
+}
 
 int main() {
   int n, m;
@@ -18,55 +59,41 @@ int main() {
       a[i].push_back(k);
     }
   }
-  set<int> small;
-  
-  vector<pair<int, int>> p;
-  
   for (int i = 1; i < n; i++) {
     int sz = min(a[i-1].size(), a[i].size());
-    bool done = 0;
     for (int j = 0; j < sz; j++) {
-      if (a[i-1][j] < a[i][j]) {
-        if (small.count(a[i][j])) {
-          small.insert(a[i-1][j]);
-        }
-        p.emplace_back(a[i-1][j], a[i][j]);
-        done = 1;
-        break;
-      } else if (a[i-1][j] > a[i][j]) {
-        if (small.count(a[i-1][j]) && small.count(a[i][j])) {
-          puts("No");
-          return 0;
-        } else if (small.count(a[i-1][j])) {
-          // nothing
-        } else if (small.count(a[i][j])) {
-          puts("No");
-          return 0;
-        } else {
-          small.insert(a[i-1][j]);
-        }
-        p.emplace_back(a[i-1][j], a[i][j]);
-        done = 1;
-        break;
+      if (a[i-1][j] != a[i][j]) {
+        adj[a[i-1][j]].push_back(a[i][j]);
+        rev[a[i][j]].push_back(a[i-1][j]);
+        goto SIP;
       }
     }
-    if (!done) {
-      if (a[i-1].size() > a[i].size()) {
-        puts("No");
-        return 0;
+    if (a[i-1].size() > a[i].size()) {
+      puts("No");
+      return 0;
+    }
+    SIP:;
+  }
+  
+// In MAIN();
+  num.assign(m + 1, -1);
+  low.assign(m + 1, 0);
+  vis.assign(m + 1, 0);
+  cntr = numCC = 0;
+  for(int i = 1; i <= m; i++)
+    if(num[i] == -1)
+      tarjanSCC(i);
+    
+  for (int i = 1; i <= m; i++) {
+    for (auto it : adj[i]) {
+      if (i > it) {
+        dfs(i);
       }
     }
   }
-  for (auto it : p) {
-    int u, v;
-    tie(u, v) = it;
-    if (u < v) {
-      if (small.count(v) && !small.count(u)) {
-        puts("No");
-        return 0;
-      }
-    } else {
-      if (!(small.count(u) && !small.count(v))) {
+  for (int i = 1; i <= m; i++) {
+    for (auto it : adj[i]) {
+      if (i > it && col[i] == col[it]) {
         puts("No");
         return 0;
       }
@@ -74,7 +101,7 @@ int main() {
   }
   
   puts("Yes");
-  printf("%d\n", small.size());
-  for (auto it : small) printf("%d ", it);
+  printf("%d\n", ans.size());
+  for (auto it : ans) printf("%d ", it);
   return 0;
 }
