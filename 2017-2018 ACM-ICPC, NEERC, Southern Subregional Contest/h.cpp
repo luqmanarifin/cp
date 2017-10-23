@@ -12,9 +12,12 @@ int main() {
   scanf("%d %s", &n, buf);
   for (int i = 0; i < n; i++) cnt[buf[i]]++;
   int ada = 0;
-  for (char c = 'a'; c <= 'z'; c++) ada += cnt[c] / 2;
-  for (char c = 'A'; c <= 'Z'; c++) ada += cnt[c] / 2;
-  for (char c = '0'; c <= '9'; c++) ada += cnt[c] / 2;
+  vector<char> alp;
+  for (char c = 'a'; c <= 'z'; c++) alp.push_back(c);
+  for (char c = 'A'; c <= 'Z'; c++) alp.push_back(c);
+  for (char c = '0'; c <= '9'; c++) alp.push_back(c);
+
+  for (char c : alp) ada += cnt[c] / 2;
   
   for (int len = n; len >= 1; len--) {
     if (n % len) continue;
@@ -28,29 +31,7 @@ int main() {
       if (need > 0) {
         // pointer kata, character
         int p = 0, q = 0;
-        for (char c = 'a'; c <= 'z'; c++) {
-          while (cnt[c] >= 2 && p < ans_words) {
-            s[p][q] = s[p][len - 1 - q] = c;
-            q++;
-            if (q == len / 2) {
-              p++;
-              q = 0;
-            }
-            cnt[c] -= 2;
-          }
-        }
-        for (char c = 'A'; c <= 'Z'; c++) {
-          while (cnt[c] >= 2 && p < ans_words) {
-            s[p][q] = s[p][len - 1 - q] = c;
-            q++;
-            if (q == len / 2) {
-              p++;
-              q = 0;
-            }
-            cnt[c] -= 2;
-          }
-        }
-        for (char c = '0'; c <= '9'; c++) {
+        for (auto c : alp) {
           while (cnt[c] >= 2 && p < ans_words) {
             s[p][q] = s[p][len - 1 - q] = c;
             q++;
@@ -67,17 +48,7 @@ int main() {
         for (int i = 0; i < ans_words; i++) {
           if (s[i][len / 2] == '*') {
             bool ok = 0;
-            for (int c = 'a'; c <= 'z' && !ok; c++) if (cnt[c]) {
-              ok = 1;
-              cnt[c]--;
-              s[i][len / 2] = c;
-            }
-            for (int c = 'A'; c <= 'Z' && !ok; c++) if (cnt[c]) {
-              ok = 1;
-              cnt[c]--;
-              s[i][len / 2] = c;
-            }
-            for (int c = '0'; c <= '9' && !ok; c++) if (cnt[c]) {
+            for (auto c : alp) if (cnt[c] && !ok) {
               ok = 1;
               cnt[c]--;
               s[i][len / 2] = c;
