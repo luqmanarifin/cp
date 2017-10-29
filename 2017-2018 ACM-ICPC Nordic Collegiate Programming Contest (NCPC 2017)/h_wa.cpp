@@ -29,6 +29,7 @@ bool isup(point p) {
   if (p.y > 0) return true;
   return p.x > 0;
 }
+
 int cek(point le, point p, point ri) {
   long long vle = le % p, vri = ri % p;
   if (vle == 0) return -1;
@@ -62,23 +63,19 @@ int cek(point le, point p, point ri) {
       return -1;
   }
 }
+
 point train[N];
 vector<point> after[N];
 int nxt[N];
 int n, m;
 int get(int mid) {
   int last = 0, now = 0, cur = mid;
-  int tot = 0;
   for (int i = 0; i < m; i++) {
-    cur = min(cur, (int)after[now].size());
-    tot += cur;
-    last = (int)after[now].size() - cur;
+    last = max((int)after[now].size() - cur, 0);
     now = nxt[now];
-    last = min(last, train[now].c);
-    tot += last;
-    cur = train[now].c - last;
+    cur = max(train[now].c - last, 0);
   }
-  return tot;
+  return last;
 }
 
 int main() {
@@ -138,7 +135,9 @@ int main() {
       continue;
     }
     int res = cek(vp[l], vp[i], vp[r]);
+//    cerr << vp[l].id << " " << vp[i].id << " " << vp[r].id << " " << res << endl;
     if (res == -1) {
+//      cerr << vp[l].c << " | " << vp[l].id << endl;
       if (vp[l].c > 0) {
         ans[vp[i].id] = vp[l].id;
         vp[l].c--;
@@ -159,7 +158,9 @@ int main() {
   l = 0, r = train[0].c;
   int sisa = get(r);
   while (l < r) {
+//    cerr << " bin " << l << " " << r << endl;
     int mid = (l + r) >> 1;
+//    cerr << " " << mid << " cmp " << get(mid) << endl;
     if (get(mid) == sisa)
       r = mid;
     else
@@ -167,16 +168,20 @@ int main() {
   }
   int now = 0, cur = l;
   for (int i = 0; i <= m; i++) {
+//    cerr << now << " c " << cur << endl;
     train[now].c -= cur;
     while (cur > 0 && !after[now].empty()) {
       cur--;
       ans[after[now].back().id] = now;
+  //    cerr << after[now].back().id << " wow " << now << endl;
       after[now].pop_back();
     }
     int nx = nxt[now];
+//    cerr << now << " ? " << nx << endl;
     while (train[nx].c > 0 && !after[now].empty()) {
       train[nx].c--;
       ans[after[now].back().id] = nx;
+  //    cerr << after[now].back().id << " wow " << nx << endl;
       after[now].pop_back();
     }
     now = nx;
