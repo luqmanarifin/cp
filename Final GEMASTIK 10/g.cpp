@@ -138,7 +138,7 @@ int main() {
           }
           if(cnt == 0){
             A[n] = now;
-            C[2 * sisan + 1] = now; 
+            C[2 * sisan] = now; 
           }
           for(int i = 1;i <= sisan; ++i) B[i] = now;
           for(int i = 1;i <= n; ++i) printf("%d %d %d\n", A[i], B[i], C[i]); 
