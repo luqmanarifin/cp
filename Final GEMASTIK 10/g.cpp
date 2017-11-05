@@ -96,16 +96,16 @@ int main() {
         }
         else{
           for(int i = 1;i <= n; ++i) A[i] = i;
-          B[1] = m, C[1] = k;
+          B[1] = m, C[1] = k + 1;
           for(int i = 2;i <= k + 1; ++i) B[i] = i - 1, C[i] = m;
-          for(int i = k + 2; i <= n; ++i) B[i] = m, C[i] = k;
+          for(int i = k + 2; i <= n; ++i) B[i] = m, C[i] = k + 1;
           puts("mungkin");
           for(int i = 1;i <= n; ++i) printf("%d %d %d\n", A[i], B[i], C[i]); 
         }
       }
       else{
         int minm = k;
-        minm += (sisan - 1) / medals + 1;
+        minm += sisan / medals + 1;
         if(m < minm){
           puts("mustahil");
           continue;
