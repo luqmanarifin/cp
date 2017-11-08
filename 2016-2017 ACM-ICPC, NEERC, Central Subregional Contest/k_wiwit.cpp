@@ -23,14 +23,8 @@ bool isHex(char c) {
   return ('0' <= c && c <= '9') || ('A' <= c && c <= 'F');
 }
 bool isConst(string s) {
-  if (s.size() > 2) return 0;
-  for (char c : s)
-    if (!isHex(c))
-      return false;
-  return 1;
-}
-bool isPosConst(string s) {
-  return isConst(s) && s != "0" && s != "00";
+  if (s.size() != 2) return 0;
+  return isHex(s[0]) && isHex(s[1]);
 }
 
 bool isRegister(string s) {
@@ -107,7 +101,7 @@ bool shortenXor1(vector<commandd> & vc) {
   if (vc.size() < sz) return 0;
   int i = (int)vc.size() - sz;
   string rx = vc[i+3].p1, ry = vc[i+1].p2, rz = vc[i].p1, co = vc[i+2].p2;
-  if (!isRegister(rx) || !isPosConst(co) || !isRegister(rz) || !isRegister(ry)) return 0;
+  if (!isRegister(rx) || !isConst(co) || !isRegister(rz) || !isRegister(ry)) return 0;
   if (rx == rz) return 0;
   if (vc[i] != commandd("PUSH", rz)) return 0; 
   if (vc[i+1] != commandd("MOV", rz, ry)) return 0;
@@ -143,7 +137,8 @@ bool shortenXor2(vector<commandd> & vc) {
 bool shortenPush(vector<commandd> & vc) {
   int sz = 7;
   if (vc.size() < sz) return 0;
-  int i = (int)vc.size() - sz;  string rx = vc[i].p1, rz = vc[i].p1;
+  int i = (int)vc.size() - sz;
+  string rx = vc[i].p1, rz = vc[i+1].p2;
   if (!isRegister(rx) || !isRegister(rz)) return 0;
   if (rx == rz) return 0;
   if (vc[i] != commandd("PUSH", rx)) return 0; 
@@ -162,7 +157,8 @@ bool shortenPush(vector<commandd> & vc) {
 bool shortenPop(vector<commandd> & vc) {
   int sz = 5;
   if (vc.size() < sz) return 0;
-  int i = (int)vc.size() - sz;string rx = vc[i].p1, rz = vc[i].p2;
+  int i = (int)vc.size() - sz;
+  string rx = vc[i].p1, rz = vc[i].p2;
   if (!isRegister(rx) || !isRegister(rz)) return 0;
   if (rx == rz) return 0;
   if (vc[i] != commandd("MOV", rx, rz)) return 0; 
@@ -191,9 +187,8 @@ int main() {
     if (c.cmd == "XOR" || c.cmd == "ADD" || c.cmd == "MOV") {
       c.p1.pop_back();
       cin >> c.p2;
-      if (c.p2.size() == 1) {
+      if (c.p2.size() == 1)
         c.p2 = "0" + c.p2;
-      }
     }
     vc.push_back(c);
     bool ok = 1;
