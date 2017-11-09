@@ -32,6 +32,8 @@ int main() {
   point sb, fb;
   scanf("%d %d %d %d %d %d", &sa.x, &sa.y, &sa.z, &fa.x, &fa.y, &fa.z);
   scanf("%d %d %d %d %d %d", &sb.x, &sb.y, &sb.z, &fb.x, &fb.y, &fb.z);
+  bool swapped = 0;
+  if (sb == fb) swap(sa, sb), swap(fa, fb), swapped = 1;
   vector<point> ans;
   while (sa != fa) {
     ans.push_back(sa);
@@ -68,6 +70,8 @@ int main() {
     sb = pos[rand() % v].second;
   }
   tmp.push_back(fb);
+  
+  if (swapped) swap(tmp, ans);
   
   for (int i = 0; i < max(ans.size(), tmp.size()); i++) {
     point a = (i < ans.size()? ans[i] : ans.back());
