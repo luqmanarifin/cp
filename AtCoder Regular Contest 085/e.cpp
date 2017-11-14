@@ -36,7 +36,7 @@ void entry(int v) {
     }
   }
   if (v > 1) {
-    prime.emplace_back(v, 1);
+    prime.emplace_back(v, 1);A
   }
   dfs(0, 1);
 }
