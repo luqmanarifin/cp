@@ -5,63 +5,60 @@ using namespace std;
 const int inf = 2e9;
 int X, Y, Z, A, B, C;
 
-int add_X_Z(int x, int y, int z) {
-  vector<pair<int, int>> s;
-  s.emplace_back(A * 6, 1);
-  s.emplace_back(B * 3, 2);
-  s.emplace_back(C * 2, 3);
-  sort(s.begin(), s.end());
-  int ans = 0;
-  for (auto it : s) {
-    if (it.second == 1) {
-      ans += (x + y + z) * A;
-      x = y = z = 0;
-    } else if (it.second == 2) {
-      int del = min(x, z);
-      ans += del * B;
-      x -= del;
-      z -= del;
-    } else {
-      int del = min(x, min(y, z));
-      ans += del * C;
-      x -= del;
-      y -= del;
-      z -= del;
-    }
-  }
-  assert(x == 0 && y == 0 && z == 0);
-  return ans;
+int dua(int x, int y, int z) {
+  if (2 * A <= B) return (x + y + z) * A;
+  vector<int> p = {x, y, z};
+  sort(p.begin(), p.end());
+  x = p[0];
+  y = p[1];
+  z = p[2];
+  
+  int b = 0;
+  
+  int del = min(x, z - y);
+  b += del;
+  x -= del;
+  z -= del;
+  
+  b += x;
+  z -= x / 2;
+  y -= x / 2 + x % 2;
+  x = 0;
+  
+  del = min(y, z);
+  b += del;
+  y -= del;
+  z -= del;
+  
+  return b * B + (x + y + z) * A;
 }
 
-int add_Y_Z(int x, int y, int z) {
-  int l = 0, r = min(y, z);
+int solve(int x, int y, int z) {
+  int ans = inf;
+  
+  int l = 0, r = min(x, min(y, z)) / 2;
   while (r - l > 3) {
     int lf = l + (r - l) / 3;
     int rf = r - (r - l) / 3;
-    if (add_X_Z(x, y - lf, z - lf) + lf * B < add_X_Z(x, y - rf, z - rf) + rf * B) {
+    if (dua(x - 2*lf, y - 2*lf, z - 2*lf) + 2*lf * C < dua(x - 2*rf, y - 2*rf, z - 2*rf) + 2*rf * C) {
       r = rf;
     } else {
       l = lf;
     }
   }
-  int ans = inf;
-  for (int i = l; i <= r; i++) ans = min(ans, add_X_Z(x, y - i, z - i) + i * B);
-  return ans;
-}
-
-int add_X_Y(int x, int y, int z) {
-  int l = 0, r = min(x, y);
+  for (int i = l; i <= r; i++) ans = min(ans, dua(x - 2*i, y - 2*i, z - 2*i) + 2*i * C);
+  
+  l = 0, r = (min(x, min(y, z)) - 1) / 2;
   while (r - l > 3) {
     int lf = l + (r - l) / 3;
     int rf = r - (r - l) / 3;
-    if (add_Y_Z(x - lf, y - lf, z) + lf * B < add_Y_Z(x - rf, y - rf, z) + rf * B) {
+    if (dua(x - 2*lf-1, y - 2*lf-1, z - 2*lf-1) + (2*lf+1) * C < dua(x - 2*rf-1, y - 2*rf-1, z - 2*rf-1) + (2*rf+1) * C) {
       r = rf;
     } else {
       l = lf;
     }
   }
-  int ans = inf;
-  for (int i = l; i <= r; i++) ans = min(ans, add_Y_Z(x - i, y - i, z) + i * B);
+  for (int i = l; i <= r; i++) ans = min(ans, dua(x - 2*i-1, y - 2*i-1, z - 2*i-1) + (2*i+1) * C);
   return ans;
 }
 
@@ -70,7 +67,7 @@ int main() {
   scanf("%d", &t);
   while (t--) {
     scanf("%d %d %d %d %d %d", &X, &Y, &Z, &A, &B, &C);
-    printf("%d\n", add_X_Y(X, Y, Z));
+    printf("%d\n", solve(X, Y, Z));
   }
   return 0;
 }
