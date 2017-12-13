@@ -403,21 +403,63 @@ struct bigint {
   }
 };
 
+const int N = 6e5 + 5;
+
+struct bit {
+  bit() {
+    a.assign(N, bigint(0));
+  }
+  void add(int i, bigint v) {
+    for (; i < N; i |= i + 1) {
+      a[i] = a[i] + v;
+    }
+  }
+  bigint find(int i) {
+    bigint ret(0);
+    for (; i >= 0; i = (i & (i + 1)) - 1) {
+      ret = ret + a[i];
+    }
+    return ret;
+  }
+  vector<bigint> a;
+};
+
+int a[N];
+vector<int> all;
+
+int id(int v) {
+  return lower_bound(all.begin(), all.end(), v) - all.begin();
+}
+
+int rev(int i) {
+  return all.size() - 1 - i;
+}
+
 int main() {
   int n;
   scanf("%d", &n);
-  bigint ans(0);
-  map<int, int> cnt;
-  long long sum = 0;
   for (int i = 0; i < n; i++) {
-    int v;
-    scanf("%d", &v);
-    int ada = i - cnt[v] - cnt[v - 1] - cnt[v + 1];
-    long long other = sum - 1LL*cnt[v]*v - 1LL*cnt[v-1]*(v-1) - 1LL*cnt[v+1]*(v+1);
+    scanf("%d", a + i);
+    for (int j = -1; j <= 1; j++) {
+      all.push_back(a[i] + j);
+    }
+  }
+  sort(all.begin(), all.end());
+  all.resize(distance(all.begin(), unique(all.begin(), all.end())));
+  for (int i = 0; i < n; i++) a[i] = id(a[i]);
+  bit sum_low;
+  bit sum_upp;
+  bit cnt_low;
+  bit cnt_upp;
+  bigint ans = 0;
+  for (int i = 0; i < n; i++) {
+    ans = ans + cnt_low.find(a[i] - 2) * all[a[i]] - sum_low.find(a[i] - 2);
+    ans = ans + cnt_upp.find(rev(a[i]) - 2) * all[a[i]] - sum_upp.find(rev(a[i]) - 2);
     
-    ans = ans + bigint(ada) * bigint(v) - bigint(other);
-    cnt[v]++;
-    sum += v;
+    sum_low.add(a[i], all[a[i]]);
+    cnt_low.add(a[i], 1);
+    sum_upp.add(rev(a[i]), all[a[i]]);
+    cnt_upp.add(rev(a[i]), 1);
   }
   cout << ans << endl;
   return 0;

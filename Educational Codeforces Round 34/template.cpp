@@ -1,40 +1,62 @@
 /*
 
-I will leave my heart at the door
-I won't say a word
-They've all been said before, you know
-So why don't we just play pretend
-Like we're not scared of what is coming next
-Or scared of having nothing left
+Our shadows stretch out on the pavement
+As I walk in the twilight with you
+If we could be together like this forever
+Holding hands
+It's almost enough to make me cry
 
-Look, don't get me wrong
-I know there is no tomorrow
+The wind grows colder
+I can smell winter
+Soon the season will come to this town
+When I can get close to you
 
-All I ask is if this is my last night with you
-Hold me like I'm more than just a friend
-Give me a memory I can use
-Take me by the hand while we do what lovers do
-It matters how this ends
-'Cause what if I never love again?
+This moment
+When the two of us cuddle up
+To gaze at the first snow flower of the year
+Is overflowing with happiness
 
-I don't need your honesty
-It's already in your eyes
-And I'm sure my eyes, they speak for me
-No one knows me like you do
-And since you're the only one that matters
-Tell me who do I run to?
+It's not dependence or weakness
+I just love you
+I thought so with all my heart
 
-Let this be our lesson in love
-Let this be the way we remember us
-I don't wanna be cruel or vicious
-And I ain't asking for forgiveness
+I feel like when I'm with you
+I can overcome anything
+I pray that these days
+Will continue forever
 
-All I ask is if this is my last night with you
-Hold me like I'm more than just a friend
-Give me a memory I can use
-Take me by the hand while we do what lovers do
-It matters how this ends
-'Cause what if I never love again? 
+The wind rattled the window
+The night shakes you awake
+I will change any sorrow
+Into a smile
+
+The snow flowers fell
+Outside the window
+Unceasing
+And colored our town
+I realized that love means
+Wanting to do something
+For someone else
+
+If I should lose you
+I'll become a star and shine on you
+I'll be with you even on nights
+When your smile is wet with tears
+
+This moment
+When the two of us cuddle up
+To gaze at the first snow flower of the year
+Is overflowing with happiness
+
+It's not dependence or weakness
+I just want to be like this
+With you forever
+I can honestly think that now
+
+The pure white snow flowers
+Bury this town
+Softly drawing memories in our hearts
+Together forever with you...
 
 */
 
