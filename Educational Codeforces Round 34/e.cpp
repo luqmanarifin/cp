@@ -69,21 +69,21 @@ const int N = 5005;
 char s[N][N];
 int cnt[N][30], n, m;
 bool coli;
-vector<int> dif[N];
+int dif[N][N], len[N];
+bool done[N][N];
 
 void solve(int j1, int j2) {
   swap(s[0][j1], s[0][j2]);
   bool ok = 1;
   for (int i = 1; i < n; i++) {
-    vector<int> cek = dif[i];
-    cek.push_back(j1);
-    cek.push_back(j2);
-    sort(cek.begin(), cek.end());
-    cek.resize(unique(cek.begin(), cek.end()) - cek.begin());
     int beda = 0;
-    for (auto j : cek) {
-      beda += (s[0][j] != s[i][j]);
+    for (int j = 0; j < len[i]; j++) {
+      if (s[0][dif[i][j]] != s[i][dif[i][j]]) {
+        beda++;
+      }
     }
+    if (!done[i][j1] && s[0][j1] != s[i][j1]) beda++;
+    if (!done[i][j2] && s[0][j2] != s[i][j2]) beda++;
     if (beda == 2) continue;
     if (beda == 0 && coli) continue;
     ok = 0;
@@ -114,16 +114,22 @@ int main() {
     }
     for (int j = 0; j < m; j++) {
       if (s[i][j] != s[0][j]) {
-        dif[i].push_back(j);
+        done[i][j] = 1;
+        dif[i][len[i]++] = j;
       }
     }
-    if (dif[i].size() > 4) {
+    if (len[i] > 4) {
       puts("-1");
       return 0;
     }
   }
+  bool same = 0;
   for (int j = 0; j < m; j++) {
     for (int k = j + 1; k < m; k++) {
+      if (s[0][j] == s[0][k]) {
+        if (same) continue;
+        same = 1;
+      }
       solve(j, k);
     }
   }
