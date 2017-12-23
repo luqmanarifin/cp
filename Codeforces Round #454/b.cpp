@@ -49,6 +49,48 @@ bool valid(int i, int j) {
 }
 
 bool ok(int u, int v) {
+  if (n * m > 10) {
+    if (n > m) {
+      for (int j = 0; j < m; j++) {
+        vector<int> bla, whi; 
+        for (int i = 0; i < n; i++) {
+          int c = (i + j) % 2;
+          if (c == 0) {
+            bla.push_back(id(i, j));
+          } else {
+            whi.push_back(id(i, j));
+          }
+        }
+        sort(bla.begin(), bla.end());
+        sort(whi.begin(), whi.end());
+        reverse(bla.begin(), bla.end());
+        reverse(whi.begin(), whi.end());
+        int now = 0;
+        for (auto it : bla) x[now++][j] = it;
+        for (auto it : whi) x[now++][j] = it;
+      }
+    } else {
+      for (int i = 0; i < n; i++) {
+        vector<int> bla, whi; 
+        for (int j = 0; j < m; j++) {
+          int c = (i + j) % 2;
+          if (c == 0) {
+            bla.push_back(id(i, j));
+          } else {
+            whi.push_back(id(i, j));
+          }
+        }
+        sort(bla.begin(), bla.end());
+        sort(whi.begin(), whi.end());
+        reverse(bla.begin(), bla.end());
+        reverse(whi.begin(), whi.end());
+        int now = 0;
+        for (auto it : bla) x[i][now++] = it;
+        for (auto it : whi) x[i][now++] = it;
+      }
+    }
+    return 1;
+  }
   n = u;
   m = v;
   int now = 0;
@@ -77,6 +119,8 @@ bool ok(int u, int v) {
           int tj = j + dy[d];
           if (valid(ti, tj)) {
             int cek = x[ti][tj];
+            int dif = abs(cek - val);
+            if (dif != 1 && dif != m) continue;
             if (nj > 0 && val - 1 == cek) {
               ok = 0;
               goto LANJUT;
@@ -99,18 +143,13 @@ bool ok(int u, int v) {
     }
     if (ok) return 1;
     LANJUT:;
-    if (n * m <= 10) {
-      next_permutation(num, num + n * m);
-    } else {
-      random_shuffle(num, num + n * m);
-    }
+    next_permutation(num, num + n * m);
   } while (1);
-  return 0;
+  assert(0);
 }
 
 int main() {
   srand(time(0));
-  srand(rand());
   scanf("%d %d", &n, &m);
   for (int i = 0; i < n; i++) {
     x[i] = new int[m + 1];
@@ -131,6 +170,7 @@ int main() {
       return 0;
     }
   }
+  if (n * m <= 10);
   assert(ok(n, m));
   puts("YES");
   for (int i = 0; i < n; i++) {
@@ -139,6 +179,5 @@ int main() {
     }
     printf("\n");
   }
-
   return 0;
 }
