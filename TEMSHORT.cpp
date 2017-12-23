@@ -1,40 +1,38 @@
 /*
 
-I will leave my heart at the door
-I won't say a word
-They've all been said before, you know
-So why don't we just play pretend
-Like we're not scared of what is coming next
-Or scared of having nothing left
+We walked with our shoulders in line,
+Laughing about things that didn't matter as we looked onward toward the same dream.
+If I listen carefully, I can still hear it:
+Your voice, staining this city orange.
 
-Look, don't get me wrong
-I know there is no tomorrow
+When you're not around, I'm so bored,
+But when I say I'm lonely, you just laugh at me.
+I just keep counting up the things I have left,
+That shine brightly and never fade away.
 
-All I ask is if this is my last night with you
-Hold me like I'm more than just a friend
-Give me a memory I can use
-Take me by the hand while we do what lovers do
-It matters how this ends
-'Cause what if I never love again?
+Like the sky after the rain lets up... like clearing up one's heart...
+I remember your smile; it floats up in my mind and I can't help but smile.
+Surely, just as we were that day... like innocent children,
+We'll run through the passing seasons, seeing each of our many tomorrows.
 
-I don't need your honesty
-It's already in your eyes
-And I'm sure my eyes, they speak for me
-No one knows me like you do
-And since you're the only one that matters
-Tell me who do I run to?
+Whenever I was alone and started to feel uneasy...
+On nights I didn't want to sleep, we'd just go on talking.
 
-Let this be our lesson in love
-Let this be the way we remember us
-I don't wanna be cruel or vicious
-And I ain't asking for forgiveness
+I wonder what you'll go on to see from here,
+And what I'll see right here.
+I'll try to entrust my tears,
+To this city where the setting sun stains everything orange.
 
-All I ask is if this is my last night with you
-Hold me like I'm more than just a friend
-Give me a memory I can use
-Take me by the hand while we do what lovers do
-It matters how this ends
-'Cause what if I never love again? 
+This single love was born among a million rays of light;
+Even if you never change... even if you happen to change... you're you, so I'm not worried.
+Someday we'll both become adults and meet wonderful people;
+At that time, I hope we can bring along our irreplaceable families and meet here again...
+
+Like the sky after the rain lets up... like clearing up one's heart...
+I remember your smile; it floats up in my mind and I can't help but smile.
+This single love was born among a million rays of light...
+We run through the passing seasons, seeing each of our many tomorrows;
+Choosing from each of our many dreams.
 
 */
 
