@@ -3,9 +3,22 @@
 using namespace std;
 
 const int N = 1e5 + 5;
-const int all = 131072;
 
-int ada[all], ans[N];
+int ans[N];
+
+void solve(int n) {
+  if (n == 0) return;
+  for (int j = 20; j >= 0; j--) {
+    if ((1 << j) > n) continue;
+    int cen = (1 << j);
+    int ada = n - cen + 1;
+    for (int i = 0; i < ada; i++) {
+      swap(ans[cen + i], ans[cen - i - 1]);
+    }
+    return solve(cen - ada - 1);
+  }
+  assert(0);
+}
 
 void solve_1(int n) {
   if (n % 2) {
@@ -13,22 +26,8 @@ void solve_1(int n) {
     return;
   }
   puts("YES");
-  memset(ada, 0, sizeof(ada));
-  for (int i = 1; i <= n; i++) {
-    ada[all ^ i] = i;
-  }
-  for (int i = n; i >= 1; i--) {
-    bool found = 0;
-    for (int j = i; j < all; j = ((j + 1) | i)) {
-      if (ada[j]) {
-        ans[i] = ada[j];
-        ada[j] = 0;
-        found = 1;
-        break;
-      }
-    }
-    assert(found);
-  }
+  for (int i = 1; i <= n; i++) ans[i] = i;
+  solve(n);
   for (int i = 1; i <= n; i++) printf("%d ", ans[i]); printf("\n");
 }
 
@@ -46,8 +45,12 @@ void solve_2(int n) {
     puts("3 6 1 5 4 2");
     return;
   }
+  if (n == 7) {
+    puts("3 6 1 5 4 7 2");
+    return;
+  }
   for (int i = 1; i <= n; i++) ans[i] = i;
-  for (int j = 17; j > 0; j--) {
+  for (int j = 17; j >= 3; j--) {
     if ((1 << j) > n) continue;
     int from = (1 << j);
     int to = min(n, from * 2 - 1);
@@ -59,7 +62,8 @@ void solve_2(int n) {
       }
     }    
   }
-  swap(ans[1], ans[3]);
+  vector<int> asu = {3, 6, 1, 5, 4, 7, 2};
+  for (int i = 0; i < asu.size(); i++) ans[i + 1] = asu[i];
   for (int i = 1; i <= n; i++) printf("%d ", ans[i]); printf("\n");
 }
 
