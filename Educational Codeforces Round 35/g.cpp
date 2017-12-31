@@ -6,7 +6,7 @@ const int N = 2e5 + 5;
 const int MAGIC = 450;
 const int MAX = 105;
 
-int par[500][MAX], di[500][MAX], push[500];
+int par[MAGIC][MAX], di[MAGIC][MAX], push[MAGIC];
 int a[N], n, be[MAX], asli[MAX];
 
 int find(int block, int u) {
@@ -26,14 +26,14 @@ void change(int block, int from, int to) {
   if (u == -1) return;
   push[block] = 1;
   if (v == -1) {
-    di[block][to] = u;
     di[block][from] = -1;
+    di[block][to] = u;
   } else {
     merge(block, u, v);
     assert(find(block, u) == find(block, v));
     //printf("root %d\n", find(block, u));
-    di[block][to] = find(block, u);
     di[block][from] = -1;
+    di[block][to] = find(block, u);
   }
 }
 
@@ -48,7 +48,7 @@ void lazy(int block) {
     be[i] = asli[find(block, i)];
     //printf("%d -> %d\n", i, be[i]);
   }
-  int from = block * MAGIC, to = min(n, (block + 1) * MAGIC - 1);
+  int from = block * MAGIC, to = min(n - 1, (block + 1) * MAGIC - 1);
   for (int i = from; i <= to; i++) {
     a[i] = be[a[i]];
   }

@@ -4,7 +4,6 @@ using namespace std;
 
 const int N = 2e5 + 5;
 int a[N];
-
 int main() {
   int n, k;
   scanf("%d %d", &n, &k);
@@ -21,7 +20,7 @@ int main() {
       return 0;
     }
     st.push(a[i]);
-    if (st.top() == now) {
+    while (!st.empty() && st.top() == now) {
       done.push(now);
       now++;
       st.pop();
