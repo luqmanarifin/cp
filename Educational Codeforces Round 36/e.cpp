@@ -40,7 +40,7 @@ Choosing from each of our many dreams.
 
 using namespace std;
 
-const int N = 12e5 + 5;
+const int N = 6e5 + 5;
 
 struct item {
   item() {}
