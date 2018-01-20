@@ -1,7 +1,25 @@
+const int base = 1000000000;
+const int base_digits = 9; 
 struct bigint {
   vector<int> a;
   int sign;
- 
+  int size(){
+    if(a.empty())return 0;
+    int ans=(a.size()-1)*base_digits;
+    int ca=a.back();
+    while(ca)
+      ans++,ca/=10;
+    return ans;
+  }
+  bigint operator ^(const bigint &v){
+    bigint ans=1,a=*this,b=v;
+    while(!b.isZero()){
+      if(b%2)
+	ans*=a;
+      a*=a,b/=2;
+    }
+    return ans;
+  }
   bigint() :
     sign(1) {
   }
@@ -32,12 +50,12 @@ struct bigint {
       bigint res = v;
  
       for (int i = 0, carry = 0; i < (int) max(a.size(), v.a.size()) || carry; ++i) {
-        if (i == (int) res.a.size())
-          res.a.push_back(0);
-        res.a[i] += carry + (i < (int) a.size() ? a[i] : 0);
-        carry = res.a[i] >= base;
-        if (carry)
-          res.a[i] -= base;
+	if (i == (int) res.a.size())
+	  res.a.push_back(0);
+	res.a[i] += carry + (i < (int) a.size() ? a[i] : 0);
+	carry = res.a[i] >= base;
+	if (carry)
+	  res.a[i] -= base;
       }
       return res;
     }
@@ -47,15 +65,15 @@ struct bigint {
   bigint operator-(const bigint &v) const {
     if (sign == v.sign) {
       if (abs() >= v.abs()) {
-        bigint res = *this;
-        for (int i = 0, carry = 0; i < (int) v.a.size() || carry; ++i) {
-          res.a[i] -= carry + (i < (int) v.a.size() ? v.a[i] : 0);
-          carry = res.a[i] < 0;
-          if (carry)
-            res.a[i] += base;
-        }
-        res.trim();
-        return res;
+	bigint res = *this;
+	for (int i = 0, carry = 0; i < (int) v.a.size() || carry; ++i) {
+	  res.a[i] -= carry + (i < (int) v.a.size() ? v.a[i] : 0);
+	  carry = res.a[i] < 0;
+	  if (carry)
+	    res.a[i] += base;
+	}
+	res.trim();
+	return res;
       }
       return -(v - *this);
     }
@@ -67,11 +85,10 @@ struct bigint {
       sign = -sign, v = -v;
     for (int i = 0, carry = 0; i < (int) a.size() || carry; ++i) {
       if (i == (int) a.size())
-        a.push_back(0);
+	a.push_back(0);
       long long cur = a[i] * (long long) v + carry;
       carry = (int) (cur / base);
       a[i] = (int) (cur % base);
-      //asm("divl %%ecx" : "=a"(carry), "=d"(a[i]) : "A"(cur), "c"(base));
     }
     trim();
   }
@@ -97,7 +114,7 @@ struct bigint {
       int d = ((long long) base * s1 + s2) / b.a.back();
       r -= b * d;
       while (r < 0)
-        r += b, --d;
+	r += b, --d;
       q.a[i] = d;
     }
  
@@ -162,7 +179,7 @@ struct bigint {
       return a.size() * sign < v.a.size() * v.sign;
     for (int i = a.size() - 1; i >= 0; i--)
       if (a[i] != v.a[i])
-        return a[i] * sign < v.a[i] * sign;
+	return a[i] * sign < v.a[i] * sign;
     return false;
   }
  
@@ -225,13 +242,13 @@ struct bigint {
     int pos = 0;
     while (pos < (int) s.size() && (s[pos] == '-' || s[pos] == '+')) {
       if (s[pos] == '-')
-        sign = -sign;
+	sign = -sign;
       ++pos;
     }
     for (int i = s.size() - 1; i >= pos; i -= base_digits) {
       int x = 0;
       for (int j = max(pos, i - base_digits + 1); j <= i; j++)
-        x = x * 10 + s[j] - '0';
+	x = x * 10 + s[j] - '0';
       a.push_back(x);
     }
     trim();
@@ -265,9 +282,9 @@ struct bigint {
       cur += a[i] * p[cur_digits];
       cur_digits += old_digits;
       while (cur_digits >= new_digits) {
-        res.push_back(int(cur % p[new_digits]));
-        cur /= p[new_digits];
-        cur_digits -= new_digits;
+	res.push_back(int(cur % p[new_digits]));
+	cur /= p[new_digits];
+	cur_digits -= new_digits;
       }
     }
     res.push_back((int) cur);
@@ -283,8 +300,8 @@ struct bigint {
     vll res(n + n);
     if (n <= 32) {
       for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-          res[i + j] += a[i] * b[j];
+	for (int j = 0; j < n; j++)
+	  res[i + j] += a[i] * b[j];
       return res;
     }
  
