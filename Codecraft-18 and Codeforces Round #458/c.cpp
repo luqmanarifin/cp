@@ -51,6 +51,11 @@ int main() {
       }
     }
   }
+  if (n == 1) {
+    dp[n][1][0]--;
+  } else {
+    dp[n][1][1]--;
+  }
   long long ans = 0;
   for (int j = 0; j < N; j++) {
     if (ada[k-1][j]) {
