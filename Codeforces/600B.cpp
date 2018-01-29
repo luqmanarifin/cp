@@ -8,9 +8,9 @@ int a[N], b[N];
 
 int main() {
   int n, m;
-  cin >> n >> m;
-  for (int i = 0; i < n; i++) cin >> a[i];
-  for (int i = 0; i < m; i++) cin >> b[i];
+  scanf("%d %d", &n, &m);
+  for (int i = 0; i < n; i++) scanf("%d", a + i);
+  for (int i = 0; i < m; i++) scanf("%d", b + i);
   
   // sort A
   sort(a, a + n);
@@ -29,7 +29,7 @@ int main() {
         l = mid + 1;
       }
     }
-    cout << l << ' ';
+    printf("%d ", l);
   }
   
   return 0;
