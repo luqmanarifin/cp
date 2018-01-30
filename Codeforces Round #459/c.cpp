@@ -150,7 +150,7 @@ int main() {
     scanf("%d %d", &p, &w);
     mp[p] = w;
     fir[i] = max(1, p - k);
-    sec[i] = min(n - k + 1, p + 1);
+    sec[i] = min(n - x + 1, p + 1);
   }
   int pt = 0;
   memset(id, -1, sizeof(id));
@@ -178,7 +178,7 @@ int main() {
   awal[0][0] = 0;
   
   int now = 1;
-  int goal = n - k + 1;
+  int goal = n - x + 1;
   while (now != goal) {
     int til = zonk(now);
     if (til == -1) {
@@ -195,20 +195,6 @@ int main() {
       now = til;
     }    
   }
-  for (int i = 0; i < pt; i++) {
-    int now = mask[i];
-    for (int j = 0; j < k; j++) {
-      if (now & (1 << j)) {
-        for (int l = j + 1; l < k; l++) {
-          if ((now & (1 << l)) == 0) {
-            int to = id[now ^ (1 << j) ^ (1 << l)];
-            awal[0][to] = min(awal[0][to], awal[0][i] + c[l - j] + mp[goal + l]);
-          }
-        }
-        break;
-      }
-    }
-  }
-  cout << awal[0].back() << endl;
+  cout << awal[0][0] << endl;
   return 0;
 }
