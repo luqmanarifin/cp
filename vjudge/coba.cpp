@@ -1,43 +1,64 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int min(int x, int y, int z)
-{
-    return min(min(x, y), z);
-}
 
-int edist(string a, string b, int m, int n)
-{
-    int yes[m+1][n+1];
-    for (int i=0; i<=m; i++)
-    {
-        for (int j=0; j<=n; j++)
-        {
-            
-            if (a[i-1] == b[j-1] && i-1 >= 0 && j-1 >= 0) // i == 0 atau j == 0, i-1 = -1
-                yes[i][j] = yes[i-1][j-1];
-            else {
-                int ret = 1e8;
-                if(j-1 >= 0) ret = min(ret, yes[i][j-1]);
-                if(i-1 >= 0) ret = min(ret, yes[i-1][j]);
-                if(i-1 >= 0 && j-1 >= 0) ret = min(ret, yes[i-1][j-1]);
-                yes[i][j] = 1 + ret;
-            }
-        }
-    }
+typedef pair<int, int> ip;
 
-    return yes[m][n];
-}
+int n, idx, maks, banyak, jumlah[10010];
+string sa, sb;
+vector <int> adj[10010];
+queue <ip> q;
+map <string, int> ma;
+map <int, string> balik;
 
-int o;
-string a,b;
-
-int main()
-{
-    cin>>o;
-    for (int i=1;i<=o;i++)
-    {
-       cin>>a>>b;
-        cout<<edist(a, b, a.length(), b.length());
-    }
-    return 0;
+int main() {
+	cin >> n;
+	idx = 0;
+	for (int i = 1; i <= n; i++) {
+		cin >> sa >> sb;
+		if (ma[sa] == 0) {
+			ma[sa] = ++idx;
+			balik[idx] = sa;
+		}
+		if (ma[sb] == 0) {
+			ma[sb] = ++idx;
+			balik[idx] = sb;
+		}
+		adj[ma[sb]].push_back(ma[sa]);
+		adj[ma[sa]].push_back(ma[sb]);
+	}
+	cout << idx << "\n";
+	for (int i = 1; i <= idx; i++) {
+		q.push({i, 0});
+		maks = 0;
+		banyak = 0;
+		memset(jumlah, 0, sizeof(jumlah));
+    //printf("source %d\n", i);
+		while (!q.empty()) {
+			ip now = q.front();
+			q.pop();
+			
+			int titik = now.first;
+			int jarak = now.second;
+      //printf("%d %d\n", titik, jarak);
+			
+			if (jarak == 2) {
+				if (jumlah[titik] == -1) continue;
+				jumlah[titik]++;
+				if (jumlah[titik] > maks) {
+					maks = jumlah[titik];
+					banyak = 1;
+				} else if (jumlah[titik] == maks) {
+					banyak++;
+				}
+				continue;
+			} else {
+				jumlah[titik] = -1;
+			}
+			for (int nxt : adj[titik]) {
+				if (jumlah[nxt] == -1) continue;
+				q.push({nxt, jarak+1});
+			}
+		}
+		cout << balik[i] << " " << banyak << "\n";
+	}
 }
