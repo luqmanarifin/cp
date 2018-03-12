@@ -8,14 +8,6 @@ int ev[N], od[N];
 int n;
 vector<int> el[N];
 
-int even(int x) {
-  return 2 * x;
-}
-
-int odd(int x) {
-  return 2 * x + 1;
-}
-
 void answer() {
   printf("!");
   for (int i = 1; i <= n / 2; i++) printf(" %d", ev[i]);
@@ -23,6 +15,14 @@ void answer() {
   printf("\n");
   fflush(stdout);
   exit(0);
+}
+
+char ask(int i, int j) {
+  printf("? %d %d\n", i, j);
+  fflush(stdout);
+  char c;
+  scanf(" %c", &c);
+  return c;
 }
 
 int main() {
@@ -43,68 +43,19 @@ int main() {
     while (l < r) {
       int mid = (l + r) >> 1;
       auto p = s.lower_bound(make_pair(mid + 1, -1));
-      if (p == s.end()) {
-        p--;
-        int start = p->first;
-        int id = p->second;
-        int b = 0, k = 0;
-        vector<int> vb, vk;
-        for (auto it : el[id]) {
-          printf("? %d %d\n", i, it);
-          fflush(stdout);
-          char c;
-          scanf(" %c", &c);
-          if (c == '>') {
-            b++;
-            vb.push_back(it);
-          } else {
-            k++;
-            vk.push_back(it);
-          }
-        }
-        if (b == el[id].size()) {
-          l = start + el[id].size();
-        } else if (k == el[id].size()) {
-          r = start;
-        } else {
-          l = r = start + b;
-          s.erase(p);
-
-          el[pt] = vb;
-          s.insert(make_pair(start, pt));
-          pt++;
-
-          el[pt] = vk;
-          s.insert(make_pair(start + b, pt));
-          pt++;
-          break;
-        }
-      } else {
-        int ask_b = el[p->second][0];
-        p--;
+      if (p != s.end() && p->first < r) {   // ambil dua
         auto q = p;
-        q++;
-        int ask_a = el[p->second][0];
-        char ca, cb;
-        
-        printf("? %d %d\n", i, ask_a);
-        fflush(stdout);
-        scanf("%c", &ca);
-
-        printf("? %d %d\n", i, ask_b);
-        fflush(stdout);
-        scanf("%c", &cb);
+        p--;
+        char ca = ask(i, el[p->second][0]);
+        char cb = ask(i, el[q->second][0]);
         if (ca == '>' && cb == '>') {
           l = q->first;
         } else if (ca == '<' && cb == '<') {
           r = q->first;
         } else {
-          vector<int> b_a, b_b, k_a, k_b;
+          vector<int> b_a, k_a, b_b, k_b;
           for (auto it : el[p->second]) {
-            printf("? %d %d\n", i, it);
-            fflush(stdout);
-            char c;
-            scanf(" %c", &c);
+            char c = ask(i, it);
             if (c == '>') {
               b_a.push_back(it);
             } else {
@@ -112,10 +63,7 @@ int main() {
             }
           }
           for (auto it : el[q->second]) {
-            printf("? %d %d\n", i, it);
-            fflush(stdout);
-            char c;
-            scanf(" %c", &c);
+            char c = ask(i, it);
             if (c == '>') {
               b_b.push_back(it);
             } else {
@@ -123,16 +71,48 @@ int main() {
             }
           }
           if (b_a.size() < el[p->second].size()) {
-            ev[i] = p->first + b_a.size();
-            if (b_a.size() != 0) {
-
+            l = r = p->first + b_a.size();
+            if (0 < b_a.size() && b_a.size() < el[p->second].size()) {
+              el[pt++] = b_a;
+              el[pt++] = k_a;
+              s.insert(make_pair(p->first, pt - 2));
+              s.insert(make_pair(p->first + b_a.size(), pt - 1));
+              s.erase(p);
             }
           } else {
-            ev[i] = q->first + b_b.size();
+            l = r = q->first + b_b.size();
             if (0 < b_b.size() && b_b.size() < el[q->second].size()) {
-              
+              el[pt++] = b_b;
+              el[pt++] = k_b;
+              s.insert(make_pair(q->first, pt - 2));
+              s.insert(make_pair(q->first + b_b.size(), pt - 1));
+              s.erase(q);
             }
           }
+          break;
+        }
+      } else {                              // ambil satu
+        p--;
+        vector<int> b, k;
+        for (auto it : el[p->second]) {
+          char c = ask(i, it);
+          if (c == '>') {
+            b.push_back(it);
+          } else {
+            k.push_back(it);
+          }
+        }
+        if (b.size() == 0) {
+          r = p->first;
+        } else if (b.size() == el[p->second].size()) {
+          l = p->first + el[p->second].size();
+        } else {
+          l = r = p->first + b.size();
+          el[pt++] = b;
+          el[pt++] = k;
+          s.insert(make_pair(p->first, pt - 2));
+          s.insert(make_pair(p->first + b.size(), pt - 1));
+          s.erase(p);
           break;
         }
       }
