@@ -32,11 +32,6 @@ int main() {
         }
       }
     }
-    //~ for (int i = 0; i < n; i++) {
-      //~ for (int j = 0; j < n; j++) {
-        //~ printf("s %d %d: %d\n", i, j, d[i][j]);
-      //~ }
-    //~ }
     printf("Case %d: ", ++tt);
     if (n == 3) {
       printf("%d\n", 2 * (d[0][1] + d[1][2]));
