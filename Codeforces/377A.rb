@@ -12,10 +12,10 @@ def dfs(x, y)
     return
   end
   $a[x][y] = 'L'
-  dfs(x + 1, y)
-  dfs(x - 1, y)
-  dfs(x, y + 1)
-  dfs(x, y - 1)
+  dfs x + 1, y
+  dfs x - 1, y
+  dfs x, y + 1
+  dfs x, y - 1
   return if $k == 0
   $a[x][y] = 'X'
   $k -= 1;
@@ -32,7 +32,7 @@ end
 
 for i in 0..$n-1
   for j in 0..$m-1
-    dfs(i, j) if $a[i][j] == '.'
+    dfs i, j if $a[i][j] == '.'
   end
 end
 
