@@ -31,7 +31,7 @@ public:
         for (int j = i + 1; j <= n; j++) {
           if (dp[p][i][j] == -1) continue;
           pair<int, int> b = make_pair(i, j);
-          for (int ni = j + 1; j <= n; j++) {
+          for (int ni = j + 1; ni <= n; ni++) {
             int nj = i + j + c - ni;
             if (nj > ni && dp[p + 1][ni][nj] < dp[p][i][j] + ni + nj) {
               dp[p + 1][ni][nj] = dp[p][i][j] + ni + nj;
@@ -62,7 +62,8 @@ public:
 //   int r = 0;
 
 //   StablePairsDiv1 StablePairsDiv1;
-//   cout << StablePairsDiv1.findMaxStablePairs() << endl;
+//   auto ret =  StablePairsDiv1.findMaxStablePairs(61, 94, 10);
+//   for (auto it : ret) printf("%d ", it); printf("\n");
 
 //   return 0;
 // }
