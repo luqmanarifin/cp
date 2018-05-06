@@ -1,8 +1,3 @@
-/*
-ID: l.arifi1
-PROG: ride
-LANG: C++
-*/
 #include <iostream>
 #include <cstdlib>
 #include <fstream>

@@ -1,8 +1,3 @@
-/*
-//Author : Rezwanul Islam Maruf
-//AUST ,CSE
-//25-th batch..
-*/
 #include <stdio.h>
 #include <iostream>
 #include <cmath>

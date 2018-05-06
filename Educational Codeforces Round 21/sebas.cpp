@@ -1,7 +1,3 @@
-/* 
- * Work Over Your Laziness
- * 
- */
 
 #include<iostream>
 #include<stdio.h>

@@ -1,8 +1,3 @@
-/*
-ID: your_id_here
-PROG: test
-LANG: C++                  (<-- or C++11f you prefer)
-*/
 #include <iostream>
 #include <fstream>
 #include <string>

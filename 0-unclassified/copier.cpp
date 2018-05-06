@@ -1,8 +1,3 @@
-/*
-ID: l.arifi1
-PROG: test
-LANG: C++
-*/
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
