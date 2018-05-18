@@ -17,4 +17,4 @@ int main() {
   }
   puts(bad? "NO" : "YES");
   return 0;
-}
+} 
