@@ -37,22 +37,46 @@ void backtrack(int n, int now) {
 int main() {
   vector<tuple<int, int, string>> all;
   long long now = 1;
+  set<int> high;
   for (int i = 2; now + 1LL * i * i < N; i++) {
     now += 1LL * i * i;
+    high.insert(now);
     all.emplace_back(-now, -i, to_string(i) + "H");
   }
   
   now = 1;
+  set<int> l;
   for (int i = 3; now + 1LL * i * i < N; i += 2) {
     now += 1LL * i * i;
+    l.insert(now);
     all.emplace_back(-now, -i, to_string(i) + "L");
   }
   
   now = 4;
+  set<int> r;
   for (int i = 4; now + 1LL * i * i < N; i += 2) {
     now += 1LL * i * i;
+    r.insert(now);
     all.emplace_back(-now, -i, to_string(i) + "L");
   }
+  /*
+  for (auto it : l) printf("%d ", it); printf("\n");
+  for (auto it : r) printf("%d ", it); printf("\n");
+  for (auto it : l) {
+    if (r.count(it)) {
+      assert(0);
+    }
+    if (high.count(it)) {
+      assert(0);
+    }
+  }
+  for (auto it : r) {
+    if (high.count(it)) {
+      assert(0);
+    }
+  }
+  cout << all.size() << endl;
+  */
   sort(all.begin(), all.end());
   for (int i = 0; i < all.size(); i++) {
     tie(size[i], h[i], s[i]) = all[i];
