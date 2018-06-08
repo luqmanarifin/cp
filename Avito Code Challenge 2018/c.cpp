@@ -14,7 +14,7 @@ bool dfs(int now, int bef) {
   for (auto it : edge[now]) {
     if (it == bef) continue;
     child++;
-    dfs(it, now);
+    if (dfs(it, now)) return 1;
   }
   if (child > 1) return 1;
   if (child == 0) {
