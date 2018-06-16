@@ -18,11 +18,14 @@ int main() {
       }
     }
     if (m.size() == 0) {
+      int ada = 0;
       for (int j = i; j < n; j += p) {
         if (s[j] == '.') {
-          s[j] = '1';
+          s[j] = (ada % 2? '0' : '1');
+          ada++;
         }
       }
+      if (ada > 1) can = 1;
     } else if (m.size() == 1) {
       auto it = *(m.begin());
       char isi = ((it - '0') ^ 1) + '0';
@@ -49,4 +52,8 @@ int main() {
     printf("%s\n", s);
   }
   return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9bae21bc2324518d6247c884e06d325266a9582c
