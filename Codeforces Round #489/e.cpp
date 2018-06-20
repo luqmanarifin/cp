@@ -38,7 +38,7 @@ struct segtree {
   void tambah(int l, int r, long long val) {
     tambah(1, 1, n, l, r, val);
   }
-  void tambah(int p, int l, int r, int ll, int rr, long long val) {
+  inline void tambah(int p, int l, int r, int ll, int rr, long long val) {
     relax(p, l, r);
     if (ll <= l && r <= rr) {
       add[p] += val;
@@ -54,7 +54,7 @@ struct segtree {
   int find(long long val) {
     return find(1, 1, n, val);
   }
-  int find(int p, int l, int r, long long val) {
+  inline int find(int p, int l, int r, long long val) {
     relax(p, l, r);
     if (l == r) return l;
     long long lef = num[p + p] + add[p + p];
@@ -73,7 +73,7 @@ struct segtree {
   long long find_at(int at) {
     return find_at(1, 1, n, at);
   }
-  long long find_at(int p, int l, int r, int at) {
+  inline long long find_at(int p, int l, int r, int at) {
     relax(p, l, r);
     if (at < l || r < at) return -1;
     if (l == r) return num[p];
