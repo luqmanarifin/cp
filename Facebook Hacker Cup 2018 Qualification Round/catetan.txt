@@ -1,0 +1,19 @@
+(p2 * x) ^ ((2 + p1) * x) ^ ((1 + p0) * x) ^ 0
+   3              2               1          0
+kalo n = 0
+  ga bisa wkwk
+kalo pn != 0
+  x = 0, bisa atau ga
+kalo pn == 0
+  x = 0, bisa atau ga
+
+(p1 * x) ^ ((1 + p0) * x) ^ 0
+
+0 ^ 0 = 1
+1 ^ 0 = 1
+1 ^ 1 = 1
+0 ^ 1 = 0
+
+
+
+(p1 * x) ^ ((1 + p0) * x) ^ 0
