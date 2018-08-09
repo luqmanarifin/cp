@@ -4,14 +4,10 @@ using namespace std;
 
 const int N = 1e5 + 5;
 
-#define x first
-#define y second
-
 typedef long long LD;
-const LD EPS = 1e-9, PI = acos(-1);
-inline bool eq(LD a, LD b) { return fabs(a-b) < EPS; }
-inline bool lt(LD a, LD b) { return a + EPS < b; }
-inline bool le(LD a, LD b) { return a < b + EPS; }
+inline bool eq(LD a, LD b) { return a == b; }
+inline bool lt(LD a, LD b) { return a < b; }
+inline bool le(LD a, LD b) { return a <= b; }
 inline int sign(LD x) { return eq(x, 0) ? 0 : (x < 0 ? -1 : 1); }
 
 struct point {
@@ -61,16 +57,12 @@ void convexHull(vector<point> & P) {
   swap(P[0], P[PO]);
   pivot = P[0];
   sort(++P.begin(), P.end(), angle_cmp);
-  // if point on boundary is included then uncomment this:
-  // int k = (int)P.size()-1; while (k-1 > 0 && ccw(P[0], P[k-1], P.back()) == 0) k--;
-  // reverse(P.begin() + k, P.end());
   vector<point> S;
   S.push_back(P[0]);
   S.push_back(P[1]);
   i = 2;
   while(i < n) {
     j = (int) S.size() - 1;
-    // if point on boundary is included then ccw >= 0
     if(j < 1 || ccw(S[j-1], S[j], P[i]) > 0) S.push_back(P[i++]);
     else S.pop_back();
   }
@@ -96,7 +88,9 @@ long long encode(long long A, long long B, long long C) {
   long long c = mul(A, B);
   long long d = mul(7, mul(B, C));
   long long e = mul(BIG, mul(A, C));
-  return (a + b + c + d + e) % mod;
+  long long ret = (a + b + c + d + e) % mod;
+  if (ret < 0) ret += mod;
+  return ret;
 }
 
 // lurus, vector
@@ -107,12 +101,12 @@ pair<bool, vector<long long>> encode(vector<point> A) {
     point bef = A[(i-1+A.size())%A.size()];
     point aft = A[(i+1+A.size())%A.size()];
     point p = A[i] - bef;
-    point q = aft - A[i];
+    point q = A[i] - aft;
     long long a = (p % q) % mod;
-    long long b = dist2(A[i], bef) % mod;
+    long long b = (p * q) % mod;
     long long c = dist2(A[i], aft) % mod;
     if (a) lurus = 0;
-    // printf("%lld %lld %lld\n", a, b, c);
+    //printf("%lld %lld %lld\n", a, b, c);
     HA.push_back(encode(a, b, c));
   }
   if (lurus) {
@@ -176,16 +170,18 @@ int main() {
   }
   convexHull(A);
   convexHull(B);
+  //printf("size A %d B %d\n", A.size(), B.size());
   auto HA = encode(A);
+  //puts("----");
   auto HB = encode(B);
   if (HA.first != HB.first) {
     puts("NO");
     return 0;
   }
-  // puts("HA");
-  // for (auto it : HA.second) printf("%lld\n", it);
-  // puts("HB");
-  // for (auto it : HB.second) printf("%lld\n", it);
+  //puts("HA");
+  //for (auto it : HA.second) printf("%lld\n", it);
+  //puts("HB");
+  //for (auto it : HB.second) printf("%lld\n", it);
   puts(same(HA.second, HB.second)? "YES": "NO");
 
   return 0;
