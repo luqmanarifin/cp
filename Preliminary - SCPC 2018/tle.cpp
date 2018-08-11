@@ -1,5 +1,4 @@
 /*
-
 Our shadows stretch out on the pavement
 As I walk in the twilight with you
 If we could be together like this forever
