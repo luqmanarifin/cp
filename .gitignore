@@ -12,3 +12,5 @@
 */*/*.pdf
 e
 *.gen
+.DS_Store
+*/.DS_Store
