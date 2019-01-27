@@ -1,0 +1,22 @@
+1
+2
+@article{
+title={Testing},
+author={Ahmed Salem},
+journal={Planta},
+volume={10},
+number={7},
+pages={20-30},
+year={2016},
+publisher={Springer}
+}
+@article{
+journal={Proofs from THE BOOK},
+pages={55-58},
+volume={9},
+number={11},
+author={Ahmed Salem, Ali Ramadan},
+title={WSN},
+year={2010},
+publisher={Springer}
+}
