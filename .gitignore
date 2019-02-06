@@ -12,3 +12,7 @@ e
 *.gen
 .DS_Store
 */.DS_Store
+*.in
+*.out
+*/*.in
+*/*.out

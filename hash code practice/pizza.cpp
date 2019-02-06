@@ -40,36 +40,56 @@ char s[N][N];
 vector<rectangle> pos;
 
 // per trial
-int bit[N][N];
+long long dot[N][N], sx[N][N], sy[N][N], sum[N][N];
 
-int find(int i, int j) {
-  int ret = 0;
+long long find(long long a[N][N], int i, int j) {
+  long long ret = 0;
   for (int p = i; p >= 0; p = (p & (p + 1)) - 1) {
     for (int q = j; q >= 0; q = (q & (q + 1)) - 1) {
-      ret += bit[p][q];
+      ret += a[p][q];
     }
   }
   return ret;
 }
 
-void add(int i, int j, int val) {
+void add(long long a[N][N], int i, int j, long long val) {
   for (int p = i; p <= n; p |= p + 1) {
     for (int q = j; q <= m; q |= q + 1) {
-      bit[i][j] += val;
+      a[p][q] += val;
     }
   }
 }
 
-void add_bit(int x1, int y1, int x2, int y2) {
-  add(x1, y1, +1);
+void add_bit(int i, int j, int val) {
+  add(dot, i, j, 1LL * val);
+  add(sx, i, j, 1LL * val * -(i - 1));
+  add(sy, i, j, 1LL * val * -(j - 1));
+  add(sum, i, j, 1LL * val * (i - 1) * (j - 1));
 }
 
-int find_bit(int x1, int y1, int x2, int y2) {
-  int ret = 0;
-  ret += find(x2, y2);
-  ret -= find(x1 - 1, y2);
-  ret -= find(x2, y1 - 1);
-  ret += find(x1 - 1, y1 - 1);
+int find_bit(int i, int j) {
+  long long ret = 0;
+  ret += find(dot, i, j) * i * j;
+  ret += find(sx, i, j) * j;
+  ret += find(sy, i, j) * i;
+  ret += find(sum, i, j);
+  // printf("%d %d: %lld %lld %lld %lld\n", i, j, find(dot, i, j), find(sx, i, j), find(sy, i, j), find(sum, i, j));
+  return ret;
+}
+
+void add_rect(int x1, int y1, int x2, int y2) {
+  add_bit(x1, y1, +1);
+  add_bit(x2 + 1, y1, -1);
+  add_bit(x1, y2 + 1, -1);
+  add_bit(x2 + 1, y2 + 1, +1);
+}
+
+int find_rect(int x1, int y1, int x2, int y2) {
+  long long ret = 0;
+  ret += find_bit(x2, y2);
+  ret -= find_bit(x1 - 1, y2);
+  ret -= find_bit(x2, y1 - 1);
+  ret += find_bit(x1 - 1, y1 - 1);
   return ret;
 }
 
@@ -109,16 +129,29 @@ int main() {
       }
     }
   }
-  srand(time(0));
 
-  for (int it = 0; it < 1; it++) {
-    printf("iterasi %d\n", it);
+  srand(time(0));
+  // add_rect(2, 2, 2, 5);
+  // for (int i = 1; i <= n; i++) {
+  //   for (int j = 1; j <= m; j++) {
+  //     printf("find bit %d %d: %d\n", i, j, find_bit(i, j));
+  //     // printf("%d %d %d %d: %d\n", i, j, i, j, find_rect(i, j, i, j));
+  //     for (int k = i; k <= n; k++) {
+  //       for (int l = j; l <= m; l++) {
+  //         // printf("%d %d %d %d: %d\n", i, j, k, l, find_rect(i, j, k, l));
+  //       }
+  //     }
+  //   }
+  // }
+  // return 0;
+  for (int it = 0; it < 10; it++) {
+    cerr << "iterasi " << it << endl;
     vector<rectangle> cur;
     int got = 0;
     random_shuffle(pos.begin(), pos.end());
     for (int i = 0; i <= n; i++) {
       for (int j = 0; j <= m; j++) {
-        bit[i][j] = 0;
+        dot[i][j] = sx[i][j] = sy[i][j] = sum[i][j] = 0;
       }
     }
     for (auto it : pos) {
@@ -126,10 +159,10 @@ int main() {
       int x2 = it.x2;
       int y1 = it.y1;
       int y2 = it.y2;
-      printf("%d %d %d %d: %d %d %d\n", x1, y1, x2, y2, get(T, x1, y1, x2, y2), get(M, x1, y1, x2, y2), find_bit(x1, y1, x2, y2));
-      if (get(T, x1, y1, x2, y2) >= each && get(M, x1, y1, x2, y2) >= each && find_bit(x1, y1, x2, y2) == 0) {
-        puts("USED");
-        add_bit(x1, y1, x2, y2);
+      // printf("%d %d %d %d: %d %d %d\n", x1, y1, x2, y2, get(T, x1, y1, x2, y2), get(M, x1, y1, x2, y2), find_rect(x1, y1, x2, y2));
+      if (get(T, x1, y1, x2, y2) >= each && get(M, x1, y1, x2, y2) >= each && find_rect(x1, y1, x2, y2) == 0) {
+        // puts("USED");
+        add_rect(x1, y1, x2, y2);
         cur.push_back(rectangle(x1, y1, x2, y2));
         got += (x2 - x1 + 1) * (y2 - y1 + 1);
       }
@@ -139,7 +172,7 @@ int main() {
       answer = cur;
     }
   }
-  printf("%d\n", ans);
+  printf("%d\n", answer.size());
   for (auto it : answer) {
     printf("%d %d %d %d\n", it.x1-1, it.y1-1, it.x2-1, it.y2-1);
   }
