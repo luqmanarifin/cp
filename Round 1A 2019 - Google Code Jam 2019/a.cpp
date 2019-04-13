@@ -8,7 +8,7 @@ int vis[N][N];
 int sx[N * N], sy[N * N];
 int sn, n, m;
 
-vector<pair<int, int> > edge[N][N]; 
+vector<tuple<int, int, int> > edge[N][N]; 
 
 bool dfs(int i, int j) {
   vis[i][j] = 1;
@@ -19,7 +19,7 @@ bool dfs(int i, int j) {
   if (sn == n * m) return 1;
   for (auto it : edge[i][j]) {
     int x, y;
-    tie(x, y) = it;
+    tie(ignore, x, y) = it;
     if (vis[x][y]) continue;
     if (dfs(x, y)) return 1;
   }
@@ -63,9 +63,20 @@ int main() {
             if (j == l) continue;
             if (i - j == k - l) continue;
             if (i + j == k + l) continue;
-            edge[i][j].emplace_back(k, l);
+            edge[i][j].emplace_back(0, k, l);
           }
         }
+      }
+    }
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        for (auto& it : edge[i][j]) {
+          int v, x, y;
+          tie(v, x, y) = it;
+          v = edge[x][y].size();
+        }
+        random_shuffle(edge[i][j].begin(), edge[i][j].end());
       }
     }
 
