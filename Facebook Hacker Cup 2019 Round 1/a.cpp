@@ -48,20 +48,8 @@ int main() {
       printf("Impossible\n");
       continue;
     }
-    int edges = 0;
-    for (int i = 1; i <= n; i++) {
-      for (int j = i + 1; j <= n; j++) {
-        if (d[i][j] != inf) edges++;
-      }
-    }
-    printf("%d\n", edges);
-    for (int i = 1; i <= n; i++) {
-      for (int j = i + 1; j <= n; j++) {
-        if (d[i][j] != inf) {
-          printf("%d %d %d\n", i, j, d[i][j]);
-        }
-      }
-    }
+    printf("%d\n", m);
+    for (int i = 0; i < m; i++) printf("%d %d %d\n", x[i], y[i], z[i]);
   }
 
   return 0;
