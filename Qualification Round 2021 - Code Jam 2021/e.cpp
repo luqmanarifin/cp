@@ -6,21 +6,17 @@ const int N = 105;
 const int M = 10005;
 
 int n, m, score[N], diff[M];
-long long disc[N];
 char s[N][M];
 
 int main() {
   n = 100; m = 10000;
 
-  int t;
-  scanf("%d", &t);
+  int t, v;
+  scanf("%d %d", &t, &v);
   for (int tt = 1; tt <= t; tt++) {
     memset(score, 0, sizeof(score));
     memset(diff, 0, sizeof(diff));
-    memset(disc, 0, sizeof(disc));
 
-    int v;
-    scanf("%d", &v);
     for (int i = 0; i < n; i++) {
       scanf("%s", s[i]);
       for (int j = 0; j < m; j++) {
@@ -30,45 +26,41 @@ int main() {
         }
       }
     }
-    // puts("anjing");
+    vector<pair<int, int>> que; // score, index
     for (int j = 0; j < m; j++) {
-      diff[j] *= 100;
+      que.emplace_back(diff[j], j);
     }
-    int max_score = -1, px = -1;
-    for (int i = 0; i < n; i++) {
-      // printf("%d %d\n", i + 1, score[i]);
-      if (score[i] > max_score) {
-        max_score = score[i];
-        px = i;
-      }
+    sort(que.begin(), que.end());
+    reverse(que.begin(), que.end());
+
+    vector<int> q;
+    for (int j = 0; j < m; j++) {
+      q.push_back(que[j].second);
     }
-    // printf("max score %d: %d\n", px + 1, max_score);
+    double disc = -1; int ans = -1;
     for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        if (score[i] > diff[j]) {
-
-          if (s[i][j] == '1') {
-            disc[i] += score[i] - diff[j];
-          }
-
-        } else if (score[i] < diff[j]) {
-
-          if (s[i][j] == '0') {
-            disc[i] += diff[j] - score[i];
-          }
-
+      int now = 0, med = -1;
+      for (int j = 0; j < q.size(); j++) {
+        now += s[i][q[j]] - '0';
+        if (now >= score[i] / 2) {
+          med = j;
+          break;
         }
       }
-    }
-    long long mx = -1; int p = -1;
-    for (int i = 0; i < n; i++) {
-      if (score[i] <= 5000) continue;
-      if (disc[i] > mx) {
-        mx = disc[i];
-        p = i;
+      long long sum = 0;
+      for (int j = 0; j < q.size(); j++) {
+        if (s[i][q[j]] == '1') {
+          sum += 1LL * (med - j) * (med - j);
+        }
+      }
+      double cur_disc = (double) sum / score[i];
+      if (cur_disc > disc) {
+        disc = cur_disc;
+        ans = i;
       }
     }
-    printf("Case #%d: %d\n", tt, px + 1);
+    
+    printf("Case #%d: %d\n", tt, ans + 1);
   }
 
   return 0;
