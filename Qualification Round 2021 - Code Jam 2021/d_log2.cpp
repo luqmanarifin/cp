@@ -38,18 +38,8 @@ vector<int> insert(vector<int> a, int at, int val) {
   return ret;
 }
 
-vector<int> solve(vector<int>& a, int l, int r, int x, bool left, bool right) {
-  if (l == r) {
-    if (right) {
-      return insert(a, r + 1, x);
-    }
-    if (left) {
-      return insert(a, r, x);
-    }
-    assert(0);
-    exit(0);
-  }
-  if (l + 1 == r && !left && !right) {
+vector<int> solve(vector<int>& a, int l, int r, int x, bool outer) {
+  if (l + 1 == r && !outer) {
     return insert(a, r, x);
   }
   if (l + 1 == r) {
@@ -64,15 +54,15 @@ vector<int> solve(vector<int>& a, int l, int r, int x, bool left, bool right) {
       exit(0);
     }
   }
-  int len = (r - l + 1) / 3;
-  int ll = l + len, rr = r - len + 1;
-  int v = ask(a[ll], a[rr], x);
-  if (v == a[ll]) {
-    return solve(a, l, ll, x, left, false);
-  } else if (v == a[rr]) {
-    return solve(a, rr, r, x, false, right);
+  int mid = rand() % 2? ((l + r) >> 1) : ((l + r + 1) >> 1);
+  int v = ask(a[l], a[mid], x);
+  if (v == a[l]) {
+    assert(outer);
+    return insert(a, l, x);
+  } else if (v == a[mid]) {
+    return solve(a, mid, r, x, outer);
   } else if (v == x) {
-    return solve(a, ll, rr, x, false, false);
+    return solve(a, l, mid, x, false);
   } else {
     exit(0);
   }
@@ -106,7 +96,7 @@ int main() {
 
     a = init(num[0], num[1], num[2]);
     for (int i = 3; i < num.size(); i++) {
-      a = solve(a, 0, a.size() - 1, num[i], true, true);
+      a = solve(a, 0, a.size() - 1, num[i], true);
     }
     answer(a);
   }
