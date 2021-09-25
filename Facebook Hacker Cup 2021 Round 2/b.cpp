@@ -5,7 +5,7 @@ using namespace std;
 const int N = 2e6 + 5;
 
 vector<int> edge[N];
-int rmq[N][20], lef[N], rig[N], h[N];
+int rmq[N][25], lef[N], rig[N], h[N];
 vector<int> st;
 
 int f[N], deep[N];
