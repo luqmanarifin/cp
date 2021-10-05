@@ -7,33 +7,36 @@ const int BIT = 20;
 const int MAX_NUM = (1 << BIT);
 
 int a[N], sum[N], n;
-int best[MAX_NUM][2];
+vector<int> pos[MAX_NUM][2];
 
 int solve(int bit) {
+  for (int i = 0; i < MAX_NUM; i++) {
+    pos[i][0].clear();
+    pos[i][1].clear();
+  }
   int offset = (-1 ^ ((1 << (bit + 1)) - 1));
   for (int i = 1; i <= n; i++) {
     sum[i] = (a[i] & offset);
     sum[i] ^= sum[i-1];
+    pos[sum[i]][i % 2].push_back(i);
   }
-  int ret = 0;
+  int until = 0, ret = 0;
   for (int i = 1; i <= n; i++) {
     if ((a[i] & (1 << bit)) == 0) continue;
-    int until = i;
-    while (until + 1 <= n && (a[until + 1] & (1 << bit))) {
-      until++;
+    if (until < i) {
+      until = i;
+      while (until + 1 <= n && (a[until + 1] & (1 << bit))) {
+        until++;
+      }
     }
-    for (int j = i - 1; j <= until; j++) {
-      best[sum[j]][0] = best[sum[j]][1] = 0;
+    int c = (i % 2) ^ 1;
+    int idx = lower_bound(pos[sum[i-1]][c].begin(), pos[sum[i-1]][c].end(), until + 1) - pos[sum[i-1]][c].begin();
+    if (idx > 0) {
+      int best = pos[sum[i-1]][c][idx-1];
+      if (best > i) {
+        ret = max(ret, best - i + 1);
+      }
     }
-    for (int j = i; j <= until; j++) {
-      best[sum[j]][j % 2] = j;
-    }
-    for (int j = i; j <= until; j++) {
-      int c = (j % 2) ^ 1;
-      ret = max(ret, best[sum[j-1]][c] - j + 1);
-    }
-
-    i = until;
   }
   return ret;
 }
