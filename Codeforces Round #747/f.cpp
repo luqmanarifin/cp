@@ -8,12 +8,14 @@ int main() {
   while (t--) {
     long long s, n, k;
     scanf("%lld %lld %lld", &s, &n, &k);
-    if (n == 1) {
-      puts(s == k? "YES" : "NO");
-    } else {
-      puts(k <= s? "YES" : "NO");
+    if (s == k) {
+      puts("YES");
+      continue;
     }
+    long long ans = s / (2 * k) * k;
+    long long rem = s % (2 * k);
+    ans += min(rem + 1, k);
+    puts(n + 1 > ans? "YES" : "NO");
   }
-
   return 0;
 }
