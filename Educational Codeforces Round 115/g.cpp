@@ -2,8 +2,8 @@
 
 using namespace std;
 
-const int HASH = 4;
-const long long mod[] = {(long long)1e9 + 4207, (long long)2e9 + 2153, (long long)2e9 + 143, (long long)2e9 + 89};
+const int HASH = 2;
+const long long mod[] = {(long long)1e9 + 4207, (long long)2e9 + 2153};
 
 struct Hash {
   Hash(long long x = 0) {
