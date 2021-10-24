@@ -10,7 +10,6 @@ bool sign(int x) {
   return x > 0;
 }
 
-
 void solve(int p, int q, int r) {
   vector<pair<int, int>> v;
   v.emplace_back(a[p], p);
