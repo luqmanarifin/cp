@@ -7,7 +7,7 @@ const int ITER = 16e6;
 const long long ONE = 1e9;
 const long long TWO = 2e9;
 const long long MOD[] = {TWO + 143, ONE + 4207, TWO + 2153, ONE + 87, ONE + 9};
-const int D = 1;
+const int D = 5;
 
 int x[N], n;
 
