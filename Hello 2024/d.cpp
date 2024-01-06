@@ -40,21 +40,29 @@ int main() {
     }
     for (int i = 0; i < n; i++) {
       int j = i;
-      while (j + 1 < n && p[j + 1].first == p[j].first && p[j + 1].second == p[j].second + 1) j++;
+      while (j + 1 < n && p[j + 1].first == p[j].first) j++;
 
-      // printf("asu %d %d\n", i, j);
+      vector<pair<int, int>> ranges;
+      for (int k = i; k <= j; k++) {
+        int x = k;
+        while (x + 1 <= j && rig[p[x].second] == p[x+1].second) x++;
+        ranges.emplace_back(k, x);
+        k = x;
+      }
 
-      int l = i, r = j;
-      bool gone = 1;
-      while (gone && l <= r) {
-        gone = 0;
-        if (check(p[l].second)) {
-          gone = 1;
-          l++;
-        }
-        if (check(p[r].second)) {
-          gone = 1;
-          r--;
+      for (auto it : ranges) {
+        int l = it.first, r = it.second;
+        bool gone = 1;
+        while (gone && l <= r) {
+          gone = 0;
+          if (check(p[l].second)) {
+            gone = 1;
+            l++;
+          }
+          if (check(p[r].second)) {
+            gone = 1;
+            r--;
+          }
         }
       }
 
