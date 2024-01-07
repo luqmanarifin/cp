@@ -4,11 +4,28 @@ using namespace std;
 
 const int N = 5e5 + 5;
 
+int A[N], B[N];
+long long C[N];
+
 struct segtree {
   segtree(int n) : n(n) {
     cap.assign(n << 2, 0);
     created.assign(n << 2, 0);
     passed.assign(n << 2, 0);
+    build(1, 1, n);
+  }
+  void build(int p, int l, int r) {
+    if (l == r) {
+      auto cur = min(A[l], B[l]);
+      created[p] = cur;
+      cap[p] = B[l] - cur;
+      passed[p] = A[l] - cur;
+      return;
+    }
+    int mid = (l + r) >> 1;
+    build(p + p, l, mid);
+    build(p + p + 1, mid + 1, r);
+    combine(p, l, r);
   }
   void combine(int p, int l, int r) {
     auto cur = min(passed[p + p], cap[p + p + 1]);
@@ -42,21 +59,15 @@ struct segtree {
   vector<long long> cap, created, passed;
 };
 
-int a[N], b[N];
-long long c[N];
-
 int main() {
   int n, q;
   scanf("%d %d", &n, &q);
   
-  for (int i = 1; i <= n; i++) scanf("%d", a + i);
-  for (int i = 1; i <= n; i++) scanf("%d", b + i);
-  for (int i = 1; i < n; i++) scanf("%lld", c + i);
+  for (int i = 1; i <= n; i++) scanf("%d", A + i);
+  for (int i = 1; i <= n; i++) scanf("%d", B + i);
+  for (int i = 1; i < n; i++) scanf("%lld", C + i);
 
-  // build
   segtree seg(n);
-  for (int i = 1; i <= n; i++) seg.update(i, a[i], b[i], c[i]);
-
   while (q--) {
     int p, x, y; long long z;
     scanf("%d %d %d %lld", &p, &x, &y, &z);
