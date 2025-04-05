@@ -17,3 +17,5 @@ e
 */*.in
 */*.out
 */*.txt
+**.jar
+**.kotlin_module
